@@ -31,59 +31,64 @@
     <main class="main">
       <div class="page-head">
         <div class="page-title">Transaksi Baru</div>
-        <div class="page-sub"><span data-user-name>Kasir</span> · Transaksi #TRX-2026-091-021 · ketik untuk cari produk</div>
+        <div class="page-sub"><span data-user-name>Kasir</span> · Transaksi #TRX-2026-091-021 · klik produk untuk menambah ke keranjang</div>
       </div>
 
       <div class="pos-wrap">
-        <!-- KIRI -->
+        <!-- KIRI: cari + kategori + grid produk -->
         <div>
           <div class="field mb">
-            <div class="srch"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input input-lg" type="text" placeholder="Cari produk by nama atau kode…"></div>
+            <div class="srch"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input input-lg" id="q" type="text" placeholder="Cari produk by nama atau kode…"></div>
           </div>
-          <div class="flex wrap mb">
-            <span class="badge green">Semua (85)</span>
-            <span class="badge outline">Sembako</span>
-            <span class="badge outline">Minuman</span>
-            <span class="badge outline">Snack</span>
-          </div>
-          <div class="sku-grid">
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4L11 3.8A2 2 0 009.7 3H4a1 1 0 00-1 1v5.7a2 2 0 00.6 1.4l9.6 9.6a2 2 0 002.8 0l4.6-4.6a2 2 0 000-2.7z"/></svg></span><span class="s-name">Beras Premium 5kg</span><span class="s-cat">Sembako</span><span class="s-price">Rp 68.000</span><span class="s-stock">Stok 42</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/></svg></span><span class="s-name">Minyak Goreng 1L</span><span class="s-cat">Sembako</span><span class="s-price">Rp 20.000</span><span class="s-stock low">Stok 3 · kritis</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/></svg></span><span class="s-name">Gula Pasir 1kg</span><span class="s-cat">Sembako</span><span class="s-price">Rp 18.000</span><span class="s-stock low">Stok 2 · kritis</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/></svg></span><span class="s-name">Telur Ayam</span><span class="s-cat">Sembako</span><span class="s-price">Rp 28.000</span><span class="s-stock low">Stok 4 · menipis</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20L7 8h10l3 12H4z"/></svg></span><span class="s-name">Kopi Sachet</span><span class="s-cat">Minuman</span><span class="s-price">Rp 24.000</span><span class="s-stock">Stok 15</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18"/><path d="M5 3v18h14V3"/></svg></span><span class="s-name">Mie Instan Goreng</span><span class="s-cat">Snack</span><span class="s-price">Rp 110.000</span><span class="s-stock low">Stok 1 · kritis</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M12 2v20"/></svg></span><span class="s-name">Air Mineral 600ml</span><span class="s-cat">Minuman</span><span class="s-price">Rp 4.000</span><span class="s-stock">Stok 60</span></button>
-            <button class="sku" type="button"><span class="s-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8M12 22v-8M2 12h8"/></svg></span><span class="s-name">Teh Botol</span><span class="s-cat">Minuman</span><span class="s-price">Rp 6.000</span><span class="s-stock">Stok 48</span></button>
-          </div>
+          <div class="flex wrap mb" id="catBar"></div>
+          <div class="sku-grid" id="skuGrid"></div>
+          <div class="muted mt2" style="font-size:12px;">Stok kritis ditandai merah — cek ketersediaan sebelum jual.</div>
         </div>
 
         <!-- KANAN: keranjang -->
         <div class="card cart">
-          <div class="card-h"><div><div class="card-t">Keranjang</div><div class="card-s">4 item</div></div><button class="btn btn-ghost btn-sm">Kosongkan</button></div>
-          <div class="cart-list">
-            <div class="citem"><div class="c-info"><div class="c-name">Beras Premium 5kg</div><div class="c-meta">Rp 68.000 × 2</div></div><div class="qty"><button>−</button><span>2</span><button>+</button></div><div class="c-total num">136.000</div></div>
-            <div class="citem"><div class="c-info"><div class="c-name">Minyak Goreng 1L</div><div class="c-meta">Rp 20.000 × 1</div></div><div class="qty"><button>−</button><span>1</span><button>+</button></div><div class="c-total num">20.000</div></div>
-            <div class="citem"><div class="c-info"><div class="c-name">Gula Pasir 1kg</div><div class="c-meta">Rp 18.000 × 1</div></div><div class="qty"><button>−</button><span>1</span><button>+</button></div><div class="c-total num">18.000</div></div>
-            <div class="citem"><div class="c-info"><div class="c-name">Air Mineral 600ml</div><div class="c-meta">Rp 4.000 × 3</div></div><div class="qty"><button>−</button><span>3</span><button>+</button></div><div class="c-total num">12.000</div></div>
+          <div class="card-h">
+            <div><div class="card-t" id="cartTitle">Keranjang</div><div class="card-s">Klik produk untuk tambah</div></div>
+            <button class="btn btn-ghost btn-sm" id="btnKosongkan" type="button">Kosongkan</button>
           </div>
+
+          <div class="cart-list" id="cartList"></div>
+
+          <div id="cartPaySection" style="display:none;">
           <div class="ttotal">
-            <div class="trow"><span>Subtotal</span><span class="num">Rp 186.000</span></div>
-            <div class="trow grand"><span>Total</span><span class="num">Rp 186.000</span></div>
+            <div class="trow"><span>Subtotal</span><span class="num" id="subTotal">Rp 0</span></div>
+            <div class="trow grand"><span>Total</span><span class="num" id="grandTotal">Rp 0</span></div>
           </div>
+
           <div class="pay mt">
             <div class="tit">Metode Pembayaran</div>
             <div class="methods">
-              <button class="method active" type="button"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cash"/></svg>Cash</button>
-              <button class="method" type="button"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-qr"/></svg>QRIS</button>
-              <button class="method" type="button"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Utang</button>
+              <button class="method active" type="button" data-method="cash"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cash"/></svg>Cash</button>
+              <button class="method" type="button" data-method="qris"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-qr"/></svg>QRIS</button>
+              <button class="method" type="button" data-method="utang"><svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Utang</button>
             </div>
-            <div class="field mb" style="gap:4px;margin-bottom:10px;"><label>Uang Diterima</label><input class="input input-lg" type="text" value="200.000"><label style="color:var(--fg-muted);font-size:12px;">Kembalian: <b style="color:var(--primary-text);">Rp 14.000</b></label></div>
-            <button class="btn btn-primary btn-lg btn-block" type="button"><svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-check"/></svg>Bayar & Cetak Struk</button>
+            <div class="field mb" style="gap:4px;margin-bottom:10px;">
+              <label>Uang Diterima</label>
+              <input class="input input-lg" id="paidInput" type="text" placeholder="0">
+              <label id="changeLabel" style="font-size:12px;color:var(--fg-muted);">Kembalian: Rp 0</label>
+            </div>
+            <div class="field mb" id="utangField" style="display:none;gap:4px;margin-bottom:10px;">
+              <label>Pilih Pelanggan (Utang)</label>
+              <select class="input" id="pelangganSelect">
+                <option value="">— Pilih pelanggan —</option>
+                <option value="budi">Mas Budi</option>
+                <option value="sari">Bu Sari</option>
+                <option value="darmo">Pak Darmo</option>
+                <option value="ani">Bu Ani</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" id="btnBayar" type="button" disabled><svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-check"/></svg>Bayar & Cetak Struk</button>
           </div>
+          </div><!-- /cartPaySection -->
         </div>
       </div>
 
+      <!-- Preview struk -->
       <div class="card mt" style="text-align:center;">
         <div class="card-h" style="justify-content:center;flex-direction:column;gap:4px;"><div class="card-t">Preview Struk — Printer Thermal Eppos</div><div class="card-s">Via Web Bluetooth · ESC/POS · wajib HTTPS (mockup)</div></div>
         <div class="receipt">
@@ -112,6 +117,11 @@
     <a data-owner href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
   </nav>
 </div>
+
+<!-- Toast feedback -->
+<div class="toast" id="posToast"></div>
+
 <script src="app.js"></script>
+<script src="pos.js"></script>
 </body>
 </html>

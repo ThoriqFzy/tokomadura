@@ -31,7 +31,7 @@
     <main class="main">
       <div class="page-head flex between wrap">
         <div><div class="page-title">Kasbon Pelanggan</div><div class="page-sub">Piutang beredar & riwayat pelunasan</div></div>
-        <button class="btn btn-primary"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-plus"/></svg>Tambah Pelanggan</button>
+        <button class="btn btn-primary" data-toast="Pelanggan baru ditambahkan!"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-plus"/></svg>Tambah Pelanggan</button>
       </div>
 
       <!-- role banner -->
@@ -53,7 +53,7 @@
 
       <div class="grid" style="grid-template-columns:1fr 340px;align-items:start;">
         <div class="card pad0">
-          <div class="card-h" style="padding:16px 16px 0;"><div><div class="card-t">Daftar Piutang</div><div class="card-s">Pelanggan berutang</div></div><div class="srch" style="width:180px;"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input" placeholder="Cari…"></div></div>
+          <div class="card-h" style="padding:16px 16px 0;"><div><div class="card-t">Daftar Piutang</div><div class="card-s">Pelanggan berutang</div></div><div class="srch" style="width:180px;"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input tbl-search" placeholder="Cari…"></div></div>
           <div class="tbl-wrap">
             <table class="tbl">
               <thead><tr><th>Pelanggan</th><th class="num">Saldo Utang</th><th>Status</th><th>Aksi</th></tr></thead>
@@ -73,7 +73,7 @@
             <div class="field"><label>Jumlah (Rp)</label><input class="input" type="number" placeholder="100.000"></div>
             <div class="field"><label>Tanggal</label><input class="input" type="date" value="2026-09-01"></div>
           </div>
-          <button class="btn btn-primary btn-block">Simpan Pembayaran</button>
+          <button class="btn btn-primary btn-block" data-toast="Pembayaran tercatat! Piutang diperbarui.">Simpan Pembayaran</button>
         </div>
       </div>
     </main>
@@ -87,5 +87,6 @@
   </nav>
 </div>
 <script src="app.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

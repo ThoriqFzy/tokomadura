@@ -31,7 +31,7 @@
     <main class="main">
       <div class="page-head flex between wrap">
         <div><div class="page-title">Manajemen Stok</div><div class="page-sub">Pergerakan barang masuk/keluar · alert stok minim · audit trail</div></div>
-        <button class="btn btn-primary"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-plus"/></svg>Input Stok Masuk</button>
+        <button class="btn btn-primary" data-toast="Stok masuk berhasil dicatat!"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-plus"/></svg>Input Stok Masuk</button>
       </div>
 
       <div class="alert warn mb">
@@ -48,7 +48,7 @@
 
       <div class="grid" style="grid-template-columns:1fr 340px;align-items:start;">
         <div class="card pad0">
-          <div class="card-h" style="padding:16px 16px 0;"><div><div class="card-t">Stok Saat Ini</div><div class="card-s">Posisi stok terkini & status</div></div><div class="srch" style="width:200px;"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input" placeholder="Cari…"></div></div>
+          <div class="card-h" style="padding:16px 16px 0;"><div><div class="card-t">Stok Saat Ini</div><div class="card-s">Posisi stok terkini & status</div></div><div class="srch" style="width:200px;"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input tbl-search" placeholder="Cari…"></div></div>
           <div class="tbl-wrap">
             <table class="tbl">
               <thead><tr><th>Produk</th><th class="num">Stok</th><th class="num">Min</th><th>Status</th></tr></thead>
@@ -71,7 +71,7 @@
             <div class="field"><label>Tanggal</label><input class="input" type="date" value="2026-09-01"></div>
           </div>
           <div class="field mb"><label>Catatan (opsional)</label><input class="input" placeholder="cth: dari Bu Sari"></div>
-          <button class="btn btn-primary btn-block">Simpan Stok Masuk</button>
+          <button class="btn btn-primary btn-block" data-toast="Stok masuk berhasil dicatat!">Simpan Stok Masuk</button>
         </div>
       </div>
 
@@ -99,5 +99,6 @@
   </nav>
 </div>
 <script src="app.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
