@@ -1,0 +1,10 @@
+/* =========================================================================
+   MAIN ENTRY — import semua stylesheet Toko Sembako w/ Google Fonts
+   ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@import url('tokens.css');
+@import url('base.css');
+@import url('components.css');
+@import url('pos.css');
+@import url('extras.css');

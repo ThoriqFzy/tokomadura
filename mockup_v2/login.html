@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masuk · Toko Sembako</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="logo-big">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-6h15L21 9"/><path d="M3 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/><path d="M5 12v9h14v-9"/><path d="M9 21v-6h6v6"/></svg>
+    </div>
+    <h1>Selamat Datang</h1>
+    <div class="sub">Kelola kasir, stok & kasbon — satu sistem.</div>
+
+    <!-- Role switch -->
+    <div class="roles">
+      <button class="role active" type="button">
+        <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-user"/></svg>
+        Owner
+      </button>
+      <button class="role" type="button">
+        <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-users"/></svg>
+        Kasir
+      </button>
+    </div>
+
+    <form>
+      <div class="field mb">
+        <label for="user">Email / Username</label>
+        <input class="input" id="user" type="text" placeholder="admin@tokosembako.id" value="admin@tokosembako.id">
+      </div>
+      <div class="field mb">
+        <label for="pass">Password</label>
+        <input class="input" id="pass" type="password" placeholder="••••••••" value="••••••••">
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Masuk ke Sistem</button>
+    </form>
+
+    <p class="login-mock">Mockup UI v2 — tombol belum aktif (statis).</p>
+
+    <!-- Quick nav untuk review -->
+    <div class="login-quick">
+      <div class="smaller bold muted mb" style="text-transform:uppercase;letter-spacing:.05em;">Cepat buka halaman</div>
+      <a class="lq" href="dashboard.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg> Dashboard (Owner)</a>
+      <a class="lq" href="pos.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg> POS / Kasir</a>
+      <a class="lq" href="produk.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg> Produk & Kategori</a>
+      <a class="lq" href="stok.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg> Stok</a>
+      <a class="lq" href="kasbon.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg> Kasbon</a>
+      <a class="lq" href="laporan.html"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg> Laporan</a>
+    </div>
+  </div>
+</body>
+</html>

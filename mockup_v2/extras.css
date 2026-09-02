@@ -1,0 +1,50 @@
+/* =========================================================================
+   LOGIN + KATALOG LOGIN + CHART (bar dummy)
+   ========================================================================= */
+
+/* ---- Login ---- */
+.login-body { background: linear-gradient(150deg, #052e16 0%, #065f46 55%, #047857 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.login-card {
+  width: 100%; max-width: 420px; background: var(--white); border-radius: 20px;
+  padding: 32px 28px; box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+.login-mock { text-align: center; font-size: 12px; color: var(--fg-muted); margin-top: 16px; }
+.login-card .logo-big { width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 14px; background: linear-gradient(135deg,var(--green-500),var(--green-700)); color:#fff; display:flex; align-items:center; justify-content:center; }
+.login-card h1 { text-align: center; font-size: 20px; }
+.login-card .sub { text-align: center; color: var(--fg-muted); font-size: 14px; margin-bottom: 22px; }
+
+/* role switch */
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 18px; }
+.role {
+  border: 2px solid var(--card-border); border-radius: 12px; background: #fff; cursor: pointer;
+  padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-family: inherit; font-size: 13px; font-weight: 700; color: var(--fg-muted); transition: all .13s;
+}
+.role .ri { width: 22px; height: 22px; }
+.role:hover { border-color: var(--slate-300); }
+.role.active { border-color: var(--primary); background: var(--primary-soft); color: var(--primary-text); }
+.role.active .ri { color: var(--primary-text); }
+
+/* Quick-nav on login for mockup review */
+.login-quick { margin-top: 16px; border-top: 1px dashed var(--slate-200); padding-top: 14px; }
+.lq { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 9px; font-size: 13px; font-weight: 600; color: var(--fg-muted); }
+.lq:hover { background: var(--slate-100); color: var(--fg); }
+.lq .qi { width: 16px; height: 16px; }
+
+/* ---- Chart bars (dummy) ---- */
+.chart { display: flex; align-items: flex-end; gap: 8px; height: 180px; padding-left: 4px; }
+.chart .cbar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 5px; height: 100%; }
+.chart .cb {
+  width: 100%; max-width: 46px; border-radius: 8px 8px 4px 4px;
+  min-height: 6px; position: relative;
+  background: linear-gradient(180deg, var(--green-500), var(--green-700));
+  transition: filter .15s;
+}
+.chart .cbar:hover .cb { filter: brightness(1.08); }
+.chart .cb .amt { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 700; color: var(--fg-muted); white-space: nowrap; }
+.chart .cl { font-size: 11px; color: var(--fg-muted); font-weight: 600; }
+
+/* simple legend */
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--fg-muted); margin-top: 12px; }
+.legend .k { display: inline-flex; align-items: center; gap: 6px; }
+.legend .sw { width: 10px; height: 10px; border-radius: 3px; }

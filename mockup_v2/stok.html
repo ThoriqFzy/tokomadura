@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stok · Toko Sembako</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-store"/></svg></span>
+      Toko Sembako
+    </div>
+    <div class="top-actions"><span class="top-chip">Owner</span><span class="avatar">T</span></div>
+  </header>
+
+  <div class="layout">
+    <nav class="side">
+      <div class="side-label">Menu</div>
+      <a href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+      <a href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+      <a class="active" href="stok.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg>Stok</a>
+      <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>POS / Kasir</a>
+      <a href="kasbon.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Kasbon</a>
+      <a href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
+    </nav>
+
+    <main class="main">
+      <div class="page-head flex between wrap">
+        <div>
+          <div class="page-title">Manajemen Stok</div>
+          <div class="page-sub">Pergerakan barang masuk/keluar · alert stok minim · audit trail</div>
+        </div>
+        <button class="btn btn-primary"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-plus"/></svg>Input Stok Masuk</button>
+      </div>
+
+      <!-- alert -->
+      <div class="alert warn mb">
+        <svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-warn"/></svg>
+        <div><b>6 produk di bawah stok minimum.</b> Prioritaskan restock Minyak Goreng, Gula Pasir & Mie Instan sebelum jam ramai.</div>
+      </div>
+
+      <!-- stat stok -->
+      <div class="grid g4 mb">
+        <div class="card stat"><span class="lbl">Total SKU</span><span class="val">85</span><span class="sub">produk aktif</span></div>
+        <div class="card stat"><span class="lbl">Stok Kritis</span><span class="val red">6</span><span class="sub">di bawah min</span></div>
+        <div class="card stat"><span class="lbl">Masuk hari ini</span><span class="val green">+128</span><span class="sub">unit restock</span></div>
+        <div class="card stat"><span class="lbl">Keluar hari ini</span><span class="val">−86</span><span class="sub">unit terjual</span></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1fr 340px;align-items:start;">
+        <!-- table stok -->
+        <div class="card pad0">
+          <div class="card-h" style="padding:16px 16px 0;">
+            <div><div class="card-t">Stok Saat Ini</div><div class="card-s">Posisi stok terkini & status</div></div>
+            <div class="srch" style="width:200px;"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-search"/></svg><input class="input" placeholder="Cari…"></div>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Produk</th><th class="num">Stok</th><th class="num">Min</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Beras Premium 5kg</td><td class="num bold">42</td><td class="num">5</td><td><span class="badge green">Aman</span></td></tr>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Minyak Goreng 1L</td><td class="num bold">3</td><td class="num">5</td><td><span class="badge red">Kritis</span></td></tr>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Gula Pasir 1kg</td><td class="num bold">2</td><td class="num">5</td><td><span class="badge red">Kritis</span></td></tr>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Telur Ayam</td><td class="num bold">4</td><td class="num">5</td><td><span class="badge amber">Menipis</span></td></tr>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Kopi Sachet (dus)</td><td class="num bold">15</td><td class="num">3</td><td><span class="badge green">Aman</span></td></tr>
+                <tr><td class="prod"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg></span>Mie Instan Goreng (dus)</td><td class="num bold">1</td><td class="num">3</td><td><span class="badge red">Kritis</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- form restock -->
+        <div class="card">
+          <div class="card-h"><div><div class="card-t">Stok Masuk</div><div class="card-s">Restock / penambahan</div></div></div>
+          <div class="field mb"><label>Produk</label><select class="input"><option>Minyak Goreng 1L</option><option>Gula Pasir 1kg</option><option>Telur Ayam</option><option>Beras Premium 5kg</option></select></div>
+          <div class="grid g2 mb">
+            <div class="field"><label>Jumlah</label><input class="input" type="number" placeholder="10"></div>
+            <div class="field"><label>Tanggal</label><input class="input" type="date" value="2026-09-01"></div>
+          </div>
+          <div class="field mb"><label>Catatan (opsional)</label><input class="input" placeholder="cth: restock dari Bu Sari"></div>
+          <button class="btn btn-primary btn-block">Simpan Stok Masuk</button>
+          <p class="smaller muted mt2">Stok otomatis bertambah & tercatat di log pergerakan.</p>
+        </div>
+      </div>
+
+      <!-- movement log -->
+      <div class="card mt">
+        <div class="card-h"><div><div class="card-t">Riwayat Pergerakan Stok</div><div class="card-s">Stock movement log — audit siapa & kapan</div></div><span class="badge gray">Hari ini</span></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Waktu</th><th>Produk</th><th>Tipe</th><th class="num">Qty</th><th>Catatan</th><th>Oleh</th></tr></thead>
+            <tbody>
+              <tr><td>01 Sep 07:15</td><td>Minyak Goreng 1L</td><td><span class="badge green">Masuk</span></td><td class="num">+10</td><td class="muted">restock supplier</td><td>Owner</td></tr>
+              <tr><td>01 Sep 09:20</td><td>Gula Pasir 1kg</td><td><span class="badge red">Keluar</span></td><td class="num">−2</td><td class="muted">#TRX-2026-091-014</td><td>Kasir</td></tr>
+              <tr><td>31 Aug 16:40</td><td>Telur Ayam</td><td><span class="badge red">Keluar</span></td><td class="num">−1</td><td class="muted">#TRX-2026-090-112</td><td>Kasir</td></tr>
+              <tr><td>31 Aug 10:05</td><td>Beras Premium 5kg</td><td><span class="badge red">Keluar</span></td><td class="num">−3</td><td class="muted">#TRX-2026-090-108</td><td>Kasir</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="smaller muted mt2">Keluar (transaksi jual) tercatat otomatis. Masuk (restock) diinput owner/kasir dengan catatan.</p>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+    <a href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+    <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>Kasir</a>
+    <a href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
+  </nav>
+</div>
+</body>
+</html>

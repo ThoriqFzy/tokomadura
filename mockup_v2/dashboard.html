@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Toko Sembako</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-6h15L21 9"/><path d="M3 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/><path d="M5 12v9h14v-9"/><path d="M9 21v-6h6v6"/></svg></span>
+      Toko Sembako
+    </div>
+    <div class="top-actions">
+      <span class="top-chip">Sen, 01 Sep</span>
+      <span class="avatar">T</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar desktop -->
+    <nav class="side">
+      <div class="side-label">Menu</div>
+      <a class="active" href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+      <a href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+      <a href="stok.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg>Stok</a>
+      <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>POS / Kasir</a>
+      <a href="kasbon.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Kasbon</a>
+      <a href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
+    </nav>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="page-head">
+        <div class="page-title">Selamat datang, Thoriq 👋</div>
+        <div class="page-sub">Ringkasan operasional toko hari ini — Senin, 1 September 2026</div>
+      </div>
+
+      <!-- 4 stat cards -->
+      <div class="grid g4 mb">
+        <div class="card stat">
+          <span class="lbl">Omzet Hari Ini</span>
+          <span class="val">Rp 2.845.500</span>
+          <span class="sub">47 transaksi</span>
+          <span class="trend up">▲ 12% dari kemarin</span>
+        </div>
+        <div class="card stat">
+          <span class="lbl">Barang Terlaris</span>
+          <span class="val" style="font-size:18px;">Beras Premium 5kg</span>
+          <span class="sub">38 pcs · Rp 836.000</span>
+        </div>
+        <div class="card stat">
+          <span class="lbl">Stok Kritis</span>
+          <span class="val red">6 item</span>
+          <span class="sub">di bawah stok minimum</span>
+        </div>
+        <div class="card stat">
+          <span class="lbl">Kasbon Berjalan</span>
+          <span class="val amber">Rp 1.420.000</span>
+          <span class="sub">23 pelanggan berutang</span>
+        </div>
+      </div>
+
+      <!-- Alert stok kritis -->
+      <div class="alert warn mb">
+        <svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-warn"/></svg>
+        <div><b>6 produk stok kritis.</b> Minyak Goreng, Gula Pasir & Mie Instan perlu di-restock segera. <a href="stok.html">Kelola stok →</a></div>
+      </div>
+
+      <!-- Chart + Kasbon -->
+      <div class="grid g3 mb">
+        <div class="card" style="grid-column: span 2;">
+          <div class="card-h">
+            <div>
+              <div class="card-t">Penjualan 7 Hari Terakhir</div>
+              <div class="card-s">Omzet harian (Rp)</div>
+            </div>
+            <span class="badge gray">Mingguan</span>
+          </div>
+          <div class="chart">
+            <div class="cbar"><div class="cb" style="height:42%;"><span class="amt">1,8jt</span></div><span class="cl">Sen</span></div>
+            <div class="cbar"><div class="cb" style="height:56%;"><span class="amt">2,3jt</span></div><span class="cl">Sel</span></div>
+            <div class="cbar"><div class="cb" style="height:50%;"><span class="amt">2,1jt</span></div><span class="cl">Rab</span></div>
+            <div class="cbar"><div class="cb" style="height:66%;"><span class="amt">2,7jt</span></div><span class="cl">Kam</span></div>
+            <div class="cbar"><div class="cb" style="height:78%;"><span class="amt">3,1jt</span></div><span class="cl">Jum</span></div>
+            <div class="cbar"><div class="cb" style="height:48%;"><span class="amt">1,9jt</span></div><span class="cl">Sab</span></div>
+            <div class="cbar"><div class="cb" style="height:70%;"><span class="amt">2,8jt</span></div><span class="cl">Min</span></div>
+          </div>
+          <div class="legend">
+            <span class="k"><span class="sw" style="background:var(--green-600)"></span>Total Omzet</span>
+            <span class="k"><span class="sw" style="background:var(--slate-300)"></span>Rata-rata 2,4jt/hari</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h">
+            <div>
+              <div class="card-t">Kasbon Teratas</div>
+              <div class="card-s">Pelanggan berutang</div>
+            </div>
+            <a href="kasbon.html" class="small">Semua →</a>
+          </div>
+          <div class="row"><div><div class="l-t">Mas Budi</div><div class="l-s">3 transaksi belum lunas</div></div><div class="num bold" style="color:var(--amber-700);">Rp 585.000</div></div>
+          <div class="row"><div><div class="l-t">Bu Sari</div><div class="l-s">Sedikit lagi lunas</div></div><div class="num bold">Rp 385.000</div></div>
+          <div class="row"><div><div class="l-t">Pak Darmo</div><div class="l-s">Cicil berjalan</div></div><div class="num bold">Rp 240.000</div></div>
+          <div class="row"><div><div class="l-t">Bu Ani</div><div class="l-s">Cicil berjalan</div></div><div class="num bold">Rp 120.000</div></div>
+        </div>
+      </div>
+
+      <!-- Omzet per metode + produk terlaris -->
+      <div class="grid g2">
+        <div class="card">
+          <div class="card-h"><div><div class="card-t">Omzet per Metode (hari ini)</div><div class="card-s">Breakdown pembayaran</div></div></div>
+          <div class="row"><div class="flex"><span class="badge blue">QRIS</span><span class="bold">Rp 902.000</span></div><span class="muted small">31%</span></div>
+          <div class="row"><div class="flex"><span class="badge green">Cash</span><span class="bold">Rp 1.630.000</span></div><span class="muted small">57%</span></div>
+          <div class="row"><div class="flex"><span class="badge amber">Utang</span><span class="bold">Rp 313.500</span></div><span class="muted small">12%</span></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><div class="card-t">Margin Kasar Bulan Ini</div><div class="card-s">Omzet vs modal (est.)</div></div></div>
+          <div class="flex between">
+            <div class="stat"><span class="lbl">Omzet</span><span class="val">Rp 42,8jt</span></div>
+            <div class="stat"><span class="lbl">Modal</span><span class="val">Rp 33,1jt</span></div>
+            <div class="stat"><span class="lbl">Margin</span><span class="val green">Rp 9,7jt</span></div>
+          </div>
+          <div style="background:var(--slate-100);border-radius:8px;height:10px;margin-top:14px;overflow:hidden;">
+            <div style="width:61%;height:100%;background:linear-gradient(90deg,var(--green-500),var(--green-700));"></div>
+          </div>
+          <div class="smaller muted mt2">Margin ~22.7% · perhitungan dari harga beli yang konsisten</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom nav mobile -->
+  <nav class="bottom-nav">
+    <a class="active" href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+    <a href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+    <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>Kasir</a>
+    <a href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
+  </nav>
+</div>
+</body>
+</html>
