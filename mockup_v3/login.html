@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masuk · Toko Sembako</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+  <div class="login-card fade-in">
+    <div class="logo-big">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.5-6h15L21 9"/><path d="M3 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/><path d="M5 12v9h14v-9"/><path d="M9 21v-6h6v6"/></svg>
+    </div>
+    <h1>Selamat Datang</h1>
+    <div class="sub">Masuk sebagai Owner atau Kasir</div>
+
+    <!-- Alert error -->
+    <div class="alert danger" id="loginErr" style="display:none;">
+      <svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-warn"/></svg>
+      <div id="loginErrText">Email atau password salah.</div>
+    </div>
+
+    <!-- Role switch (visual saja, auth tetap lewat form) -->
+    <div class="roles" id="roleSwitch">
+      <button class="role active" type="button" data-role="owner">
+        <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-user"/></svg>
+        Owner
+      </button>
+      <button class="role" type="button" data-role="kasir">
+        <svg class="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-users"/></svg>
+        Kasir
+      </button>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="field mb">
+        <label for="user">User / Email</label>
+        <input class="input" id="user" type="text" placeholder="admin" autocomplete="username">
+      </div>
+      <div class="field mb">
+        <label for="pass">Password</label>
+        <input class="input" id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" id="btnLogin" type="submit">Masuk</button>
+    </form>
+
+    <!-- Hint kredensial dummy -->
+    <div class="login-hint">
+      <div class="smaller muted mb">Demo login (dummy, belum pakai database):</div>
+      <div class="lq"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-user"/></svg>Owner: <b>admin</b> / <b>admin123</b></div>
+      <div class="lq"><svg class="qi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-users"/></svg>Kasir: <b>kasir</b> / <b>kasir123</b></div>
+    </div>
+
+    <p class="login-mock">Mockup UI v3 — login tersimpan di session browser (bukan database).</p>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>

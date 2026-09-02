@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan · Toko Sembako</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-store"/></svg></span>Toko Sembako</div>
+    <div class="top-actions">
+      <span class="top-chip" data-role-badge>Owner</span>
+      <button class="btn btn-sm btn-ghost" data-logout title="Keluar"><svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-logout"/></svg></button>
+      <span class="avatar" data-user-name>T</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side">
+      <div class="side-label">Menu</div>
+      <a data-owner href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+      <a data-owner href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+      <a data-owner href="stok.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cube"/></svg>Stok</a>
+      <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>POS / Kasir</a>
+      <a href="kasbon.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Kasbon</a>
+      <a data-owner href="laporan.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-chart"/></svg>Laporan</a>
+    </nav>
+
+    <main class="main">
+      <div class="page-head flex between wrap">
+        <div><div class="page-title">Laporan & Analisis</div><div class="page-sub">Akses owner — insight penjualan, stok & piutang</div></div>
+        <button class="btn btn-primary"><svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-arrow"/></svg>Export Laporan</button>
+      </div>
+
+      <div class="card mb">
+        <div class="flex wrap" style="gap:14px;">
+          <div class="field" style="gap:4px;"><label>Dari</label><input class="input" type="date" value="2026-09-01"></div>
+          <div class="field" style="gap:4px;"><label>Sampai</label><input class="input" type="date" value="2026-09-01"></div>
+          <div class="field" style="gap:4px;"><label>Periode</label><select class="input"><option>Harian</option><option>Mingguan</option><option>Bulanan</option></select></div>
+          <div class="field" style="gap:4px;"><label>Metode</label><select class="input"><option>Semua</option><option>Cash</option><option>QRIS</option><option>Utang</option></select></div>
+          <button class="btn btn-secondary" style="align-self:flex-end;">Terapkan</button>
+        </div>
+      </div>
+
+      <div class="grid g4 mb">
+        <div class="card stat"><span class="lbl">Omzet</span><span class="val">Rp 2.845.500</span><span class="sub">47 transaksi</span></div>
+        <div class="card stat"><span class="lbl">Modal (est.)</span><span class="val">Rp 2.210.000</span><span class="sub">total harga beli</span></div>
+        <div class="card stat"><span class="lbl">Margin Kasar</span><span class="val green">Rp 635.500</span><span class="sub">~22% margin</span></div>
+        <div class="card stat"><span class="lbl">Piutang</span><span class="val amber">Rp 313.500</span><span class="sub">hari ini</span></div>
+      </div>
+
+      <div class="card mb">
+        <div class="card-h"><div><div class="card-t">Omzet Harian</div><div class="card-s">7 hari terakhir (Rp)</div></div><span class="badge gray">Mingguan</span></div>
+        <div class="chart">
+          <div class="cbar"><div class="cb" style="height:42%;"><span class="amt">1,8jt</span></div><span class="cl">Sen</span></div>
+          <div class="cbar"><div class="cb" style="height:56%;"><span class="amt">2,3jt</span></div><span class="cl">Sel</span></div>
+          <div class="cbar"><div class="cb" style="height:50%;"><span class="amt">2,1jt</span></div><span class="cl">Rab</span></div>
+          <div class="cbar"><div class="cb" style="height:66%;"><span class="amt">2,7jt</span></div><span class="cl">Kam</span></div>
+          <div class="cbar"><div class="cb" style="height:78%;"><span class="amt">3,1jt</span></div><span class="cl">Jum</span></div>
+          <div class="cbar"><div class="cb" style="height:48%;"><span class="amt">1,9jt</span></div><span class="cl">Sab</span></div>
+          <div class="cbar"><div class="cb" style="height:70%;"><span class="amt">2,8jt</span></div><span class="cl">Min</span></div>
+        </div>
+      </div>
+
+      <div class="grid g2 mb">
+        <div class="card pad0">
+          <div class="card-h" style="padding:16px;"><div><div class="card-t">Produk Terlaris</div><div class="card-s">Berdasarkan qty terjual</div></div></div>
+          <div class="tbl-wrap">
+            <table class="tbl"><thead><tr><th>Produk</th><th class="num">Terjual</th><th class="num">Omzet</th></tr></thead>
+            <tbody>
+              <tr><td>Beras Premium 5kg</td><td class="num bold">38</td><td class="num">Rp 836.000</td></tr>
+              <tr><td>Air Mineral 600ml</td><td class="num bold">52</td><td class="num">Rp 208.000</td></tr>
+              <tr><td>Gula Pasir 1kg</td><td class="num bold">21</td><td class="num">Rp 378.000</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+        <div class="card pad0">
+          <div class="card-h" style="padding:16px;"><div><div class="card-t">Paling Lambat Terjual</div><div class="card-s">Perlu perhatian / promosi</div></div></div>
+          <div class="tbl-wrap">
+            <table class="tbl"><thead><tr><th>Produk</th><th class="num">Terjual (7 hari)</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Sabun Batang</td><td class="num bold">0</td><td><span class="badge gray">Stagnan</span></td></tr>
+              <tr><td>Kecap Botol 600ml</td><td class="num bold">1</td><td><span class="badge amber">Lambat</span></td></tr>
+              <tr><td>Tepung Terigu</td><td class="num bold">2</td><td><span class="badge green">Normal</span></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <a data-owner href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-grid"/></svg>Dashboard</a>
+    <a data-owner href="produk.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-box"/></svg>Produk</a>
+    <a href="pos.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-cart"/></svg>Kasir</a>
+    <a href="kasbon.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="assets/icons.svg#i-book-open"/></svg>Kasbon</a>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

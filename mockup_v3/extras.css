@@ -1,0 +1,81 @@
+/* =========================================================================
+   TOKO SEMBAKO v3 — EXTRAS
+   Motion (lembut), role-based UI, login hint, responsive HP/tab
+   ========================================================================= */
+
+/* ---- Login ---- */
+.login-body { background: linear-gradient(150deg, #052e16 0%, #065f46 55%, #047857 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.login-card { width: 100%; max-width: 420px; background: var(--white); border-radius: 20px; padding: 30px 26px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.login-card h1 { text-align: center; font-size: 20px; }
+.login-card .sub { text-align: center; color: var(--fg-muted); font-size: 14px; margin-bottom: 18px; }
+.login-card .logo-big { width: 58px; height: 58px; border-radius: 16px; margin: 0 auto 14px; background: linear-gradient(135deg,var(--green-500),var(--green-700)); color:#fff; display:flex; align-items:center; justify-content:center; }
+.login-mock { text-align:center; font-size:12px; color:var(--fg-muted); margin-top:14px; }
+
+/* login hint */
+.login-hint { margin-top: 14px; border-top: 1px dashed var(--slate-200); padding-top: 12px; }
+
+/* role switch */
+.roles { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 18px; }
+.role { border: 2px solid var(--card-border); border-radius: 12px; background:#fff; cursor:pointer; padding: 12px; display:flex; flex-direction:column; align-items:center; gap:6px; font-family:inherit; font-size:13px; font-weight:700; color:var(--fg-muted); transition: all .15s; }
+.role .ri { width: 22px; height: 22px; }
+.role:hover { border-color: var(--slate-300); transform: translateY(-1px); }
+.role.active { border-color: var(--primary); background: var(--primary-soft); color: var(--primary-text); }
+.role.active .ri { color: var(--primary-text); }
+
+/* shake animasi utk error */
+@keyframes shake { 10%,90%{transform:translateX(-1px);} 20%,80%{transform:translateX(2px);} 30%,50%,70%{transform:translateX(-3px);} 40%,60%{transform:translateX(3px);} }
+.shake { animation: shake .45s ease; }
+
+/* fade-in entry */
+.fade-in { animation: fadeIn .45s ease both; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+
+/* ---- Role badge di topbar ---- */
+.top-chip.role-owner { background: var(--primary-soft); color: var(--primary-text); }
+.top-chip.role-kasir { background: var(--info-soft); color: var(--blue-700); }
+
+/* ---- Role banner (info di dashboard) ---- */
+.role-banner { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; font-size:14px; margin-bottom:16px; border:1px solid var(--card-border); background:var(--card); }
+.role-banner .rb-ico { width:32px;height:32px;border-radius:9px; display:flex;align-items:center;justify-content:center; color:#fff; }
+.role-banner.owner .rb-ico { background:var(--primary); }
+.role-banner.kasir .rb-ico { background:var(--info); }
+
+/* ---- Blocked page ---- */
+.blocked-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; background:var(--bg); }
+.blocked-card { max-width: 420px; text-align:center; }
+
+/* ---- Chart bars (dummy) ---- */
+.chart { display:flex; align-items:flex-end; gap:8px; height:180px; padding-left:4px; }
+.chart .cbar { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:5px; height:100%; }
+.chart .cb { width:100%; max-width:46px; border-radius:8px 8px 4px 4px; min-height:6px; position:relative; background:linear-gradient(180deg,var(--green-500),var(--green-700)); transition:filter .15s; }
+.chart .cbar:hover .cb { filter:brightness(1.08); }
+.chart .cb .amt { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:700; color:var(--fg-muted); white-space:nowrap; }
+.chart .cl { font-size:11px; color:var(--fg-muted); font-weight:600; }
+
+/* ---- Micro-interaction buttons ---- */
+.btn { transition: background .15s ease, transform .06s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(1px); }
+
+/* ---- POS: sku card soft ---- */
+.sku { transition: border-color .15s, transform .12s, box-shadow .15s; }
+.sku:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+/* ---- Responsive tambahan utk HP/tab ---- */
+@media (max-width: 640px) {
+  .main { padding: 14px; }
+  .g4 { grid-template-columns: repeat(2,1fr); }
+  .stat .val { font-size: 20px; }
+  .sku-grid { grid-template-columns: repeat(2, 1fr); }
+  .pos-wrap { grid-template-columns: 1fr; }
+  .page-title { font-size: 19px; }
+  .card { padding: 16px; }
+}
+@media (min-width: 980px) {
+  .bottom-nav { display:none !important; }
+}
+
+/* ---- kebab/scroll aman ---- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate-400); }
