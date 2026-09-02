@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="logo-lg">🛒</div>
+      <h1>Selamat Datang</h1>
+      <p>Sistem Kasir & Stok Toko Sembako</p>
+
+      <!-- Mockup: role switch Owner / Kasir -->
+      <div class="role-switch" id="roleSwitch">
+        <div class="opt active" data-role="owner">Owner</div>
+        <div class="opt" data-role="kasir">Kasir</div>
+      </div>
+
+      <form>
+        <div class="form-group">
+          <label>Email / Username</label>
+          <input type="text" placeholder="admin@tokosembako.id" value="admin@tokosembako.id">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" value="••••••••">
+        </div>
+        <button type="submit" class="btn btn-block btn-lg">Masuk</button>
+      </form>
+
+      <p class="note" style="text-align:center; margin-top:16px;">
+        Mockup UI — tombol belum berfungsi. Arahkan ke halaman tujuan secara manual.
+      </p>
+      <div class="flex" style="justify-content:center; margin-top:10px;">
+        <a class="btn ghost sm" href="dashboard.html">Owner → Dashboard</a>
+        <a class="btn ghost sm" href="pos.html">Kasir → POS</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

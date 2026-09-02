@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user">
+        <span>Sen, 01 Sep 2026</span>
+        <span class="avatar">T</span>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="produk.html">Produk</a>
+      <a href="stok.html">Stok</a>
+      <a href="pos.html">POS / Kasir</a>
+      <a href="kasbon.html">Kasbon</a>
+      <a href="laporan.html">Laporan</a>
+    </nav>
+    <div class="alert info mt8" style="margin:12px 20px 0;">Role: <b>Owner</b> — akses penuh. (Mockup statis)</div>
+
+    <main class="layout">
+      <div class="grid cols-4">
+        <div class="card stat">
+          <span class="label">Omzet Hari Ini</span>
+          <span class="value green">Rp 2.845.500</span>
+          <span class="sub">▲ +12% dari kemarin · 47 transaksi</span>
+        </div>
+        <div class="card stat">
+          <span class="label">Produk Terlaris</span>
+          <span class="value" style="font-size:20px;">Beras 5kg</span>
+          <span class="sub">38 pcs · Rp 836.000</span>
+        </div>
+        <div class="card stat">
+          <span class="label">Stok Kritis</span>
+          <span class="value red">6 item</span>
+          <span class="sub">perlu restock segera</span>
+        </div>
+        <div class="card stat">
+          <span class="label">Kasbon Berjalan</span>
+          <span class="value amber">Rp 1.420.000</span>
+          <span class="sub">23 pelanggan berutang</span>
+        </div>
+      </div>
+
+      <div class="grid sidebar mt">
+        <div class="card">
+          <div class="flex between">
+            <div>
+              <div class="section-title">Penjualan 7 Hari Terakhir</div>
+              <div class="section-sub">Omzet harian (Rp)</div>
+            </div>
+            <span class="badge gray">Mingguan</span>
+          </div>
+          <div class="bar-chart">
+            <div class="bar" style="height:45%;"><span class="amt">1,8jt</span><span class="lbl">Sen</span></div>
+            <div class="bar" style="height:60%;"><span class="amt">2,3jt</span><span class="lbl">Sel</span></div>
+            <div class="bar" style="height:55%;"><span class="amt">2,1jt</span><span class="lbl">Rab</span></div>
+            <div class="bar" style="height:72%;"><span class="amt">2,7jt</span><span class="lbl">Kam</span></div>
+            <div class="bar" style="height:85%;"><span class="amt">3,1jt</span><span class="lbl">Jum</span></div>
+            <div class="bar" style="height:50%;"><span class="amt">1,9jt</span><span class="lbl">Sab</span></div>
+            <div class="bar" style="height:75%;"><span class="amt" style="color:var(--green-700);">2,8jt</span><span class="lbl">Min</span></div>
+          </div>
+
+          <div class="mt" style="border-top:1px solid var(--border); padding-top:12px;">
+            <div class="section-title" style="font-size:15px;">Per Metode Bayar (hari ini)</div>
+            <div class="list-row">
+              <div><span class="badge green">Cash</span> <span class="l-main">Tunai</span></div>
+              <div class="num" style="font-weight:700;">Rp 1.630.000</div>
+            </div>
+            <div class="list-row">
+              <div><span class="badge blue">QRIS</span> <span class="l-main">QRIS / Transfer</span></div>
+              <div class="num" style="font-weight:700;">Rp 902.000</div>
+            </div>
+            <div class="list-row">
+              <div><span class="badge amber">Utang</span> <span class="l-main">Kasbon</span></div>
+              <div class="num" style="font-weight:700;">Rp 313.500</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">Stok Kritis</div>
+          <div class="section-sub">Barang di bawah ambang minimum perlu segera di-restock</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Produk</th><th class="num">Stok</th><th class="num">Min</th></tr></thead>
+              <tbody>
+                <tr><td>Minyak Goreng 1L</td><td class="num"><span class="badge red">3</span></td><td class="num">5</td></tr>
+                <tr><td>Gula Pasir 1kg</td><td class="num"><span class="badge red">2</span></td><td class="num">5</td></tr>
+                <tr><td>Telur Ayam (kg)</td><td class="num"><span class="badge amber">4</span></td><td class="num">5</td></tr>
+                <tr><td>Mie Instan (dus)</td><td class="num"><span class="badge red">1</span></td><td class="num">3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <a class="btn ghost sm mt8" href="stok.html">Kelola stok →</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

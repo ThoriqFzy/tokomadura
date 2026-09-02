@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stok — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user"><span class="avatar">T</span></div>
+    </header>
+    <nav class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="produk.html">Produk</a>
+      <a href="stok.html" class="active">Stok</a>
+      <a href="pos.html">POS / Kasir</a>
+      <a href="kasbon.html">Kasbon</a>
+      <a href="laporan.html">Laporan</a>
+    </nav>
+    <main class="layout">
+      <div class="section-title">Manajemen Stok</div>
+      <div class="section-sub">Input stok masuk (restock) & pantau pergerakan stok untuk audit.</div>
+
+      <div class="alert warn">⚠️ <b>6 produk</b> di bawah stok minimum — lihat daftar & segera restock.</div>
+
+      <div class="grid sidebar">
+        <div class="card">
+          <div class="flex between">
+            <div class="section-title" style="font-size:15px;">Stok Saat Ini</div>
+            <div class="search" style="width:200px;"><span class="icon">🔍</span><input placeholder="Cari…"></div>
+          </div>
+          <div class="table-wrap mt8">
+            <table>
+              <thead><tr><th>Produk</th><th class="num">Stok</th><th class="num">Min</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Beras Premium 5kg</td><td class="num">42</td><td class="num">5</td><td><span class="badge green">Aman</span></td></tr>
+                <tr><td>Minyak Goreng 1L</td><td class="num">3</td><td class="num">5</td><td><span class="badge red">Kritis</span></td></tr>
+                <tr><td>Gula Pasir 1kg</td><td class="num">2</td><td class="num">5</td><td><span class="badge red">Kritis</span></td></tr>
+                <tr><td>Telur Ayam (kg)</td><td class="num">4</td><td class="num">5</td><td><span class="badge amber">Menipis</span></td></tr>
+                <tr><td>Kopi Sachet (dus)</td><td class="num">15</td><td class="num">3</td><td><span class="badge green">Aman</span></td></tr>
+                <tr><td>Mie Instan Goreng (dus)</td><td class="num">1</td><td class="num">3</td><td><span class="badge red">Kritis</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title" style="font-size:15px;">Input Stok Masuk</div>
+          <div class="section-sub">Restock / penambahan stok</div>
+          <div class="form-group"><label>Produk</label><select><option>Minyak Goreng 1L</option><option>Gula Pasir 1kg</option><option>Telur Ayam</option></select></div>
+          <div class="form-row">
+            <div class="form-group"><label>Jumlah</label><input type="number" placeholder="10"></div>
+            <div class="form-group"><label>Tanggal</label><input type="date" value="2026-09-01"></div>
+          </div>
+          <div class="form-group"><label>Catatan (opsional)</label><input placeholder="cth: restock dari supplier Bu Sari"></div>
+          <button class="btn btn-block">Simpan Stok Masuk</button>
+          <p class="note">Stok otomatis bertambah & tercatat di log pergerakan.</p>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <div class="section-title" style="font-size:15px;">Riwayat Pergerakan Stok (stock movement log)</div>
+        <div class="section-sub">Audit: semua barang masuk & keluar tercatat — siapa & kapan.</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Waktu</th><th>Produk</th><th>Tipe</th><th class="num">Qty</th><th>Catatan</th><th>Oleh</th></tr></thead>
+            <tbody>
+              <tr><td>01 Sep 07:15</td><td>Minyak Goreng 1L</td><td><span class="badge green">Masuk</span></td><td class="num">+10</td><td>restock supplier</td><td>Owner</td></tr>
+              <tr><td>01 Sep 09:20</td><td>Gula Pasir 1kg</td><td><span class="badge red">Keluar</span></td><td class="num">-2</td><td>transaksi #TRX-2026-091-014</td><td>Kasir</td></tr>
+              <tr><td>31 Aug 16:40</td><td>Telur Ayam</td><td><span class="badge red">Keluar</span></td><td class="num">-1</td><td>transaksi #TRX-2026-090-112</td><td>Kasir</td></tr>
+              <tr><td>31 Aug 10:05</td><td>Beras Premium 5kg</td><td><span class="badge red">Keluar</span></td><td class="num">-3</td><td>transaksi #TRX-2026-090-108</td><td>Kasir</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS / Kasir — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user"><span class="avatar">K</span></div>
+    </header>
+    <nav class="nav">
+      <a href="dashboard.html" class="owner-only">Dashboard</a>
+      <a href="produk.html" class="owner-only">Produk</a>
+      <a href="stok.html" class="owner-only">Stok</a>
+      <a href="pos.html" class="active">POS / Kasir</a>
+      <a href="kasbon.html">Kasbon</a>
+      <a href="laporan.html" class="owner-only">Laporan</a>
+    </nav>
+    <div class="alert info" style="margin:12px 20px 0;">Role: <b>Kasir</b> — input transaksi & lihat stok. Menu owner disembunyikan (mockup).</div>
+
+    <main class="layout">
+      <div class="pos-layout">
+        <!-- Kiri: pilih produk -->
+        <div class="card">
+          <div class="search">
+            <span class="icon">🔍</span>
+            <input placeholder="Cari produk by nama / kode… (live search, ketik langsung)">
+          </div>
+
+          <div class="flex mt8" style="flex-wrap:wrap;">
+            <span class="badge green">Semua (85)</span>
+            <span class="badge gray">Sembako</span>
+            <span class="badge gray">Minuman</span>
+            <span class="badge gray">Snack</span>
+            <span class="badge gray">Rumah tangga</span>
+          </div>
+
+          <div class="pos-grid mt8">
+            <div class="sku"><div class="name">Beras Premium 5kg</div><div class="cat">Sembako</div><div class="price">Rp 68.000</div><div class="stock">Stok 42</div></div>
+            <div class="sku"><div class="name">Minyak Goreng 1L</div><div class="cat">Sembako</div><div class="price">Rp 20.000</div><div class="stock low">Stok 3</div></div>
+            <div class="sku"><div class="name">Gula Pasir 1kg</div><div class="cat">Sembako</div><div class="price">Rp 18.000</div><div class="stock low">Stok 2</div></div>
+            <div class="sku"><div class="name">Telur Ayam</div><div class="cat">Sembako</div><div class="price">Rp 28.000</div><div class="stock low">Stok 4</div></div>
+            <div class="sku"><div class="name">Kopi Sachet</div><div class="cat">Minuman</div><div class="price">Rp 24.000</div><div class="stock">Stok 15</div></div>
+            <div class="sku"><div class="name">Mie Instan Goreng</div><div class="cat">Snack</div><div class="price">Rp 110.000</div><div class="stock low">Stok 1</div></div>
+            <div class="sku"><div class="name">Air Mineral 600ml</div><div class="cat">Minuman</div><div class="price">Rp 4.000</div><div class="stock">Stok 60</div></div>
+            <div class="sku"><div class="name">Teh Botol</div><div class="cat">Minuman</div><div class="price">Rp 6.000</div><div class="stock">Stok 48</div></div>
+            <div class="sku"><div class="name">Sabun Cair</div><div class="cat">Rumah tangga</div><div class="price">Rp 18.000</div><div class="stock">Stok 9</div></div>
+          </div>
+        </div>
+
+        <!-- Kanan: keranjang -->
+        <div class="card cart">
+          <div class="section-title" style="font-size:16px;">Transaksi #TRX-2026-091-021</div>
+          <div class="section-sub">Kasir: Dina</div>
+
+          <div class="cart-list">
+            <div class="cart-item">
+              <div><div style="font-weight:700;">Beras Premium 5kg</div><div class="small muted">Rp 68.000 × 2</div></div>
+              <div class="flex">
+                <div class="qty-ctrl"><button>−</button><span><b>2</b></span><button>+</button></div>
+                <div style="font-weight:700; width:80px; text-align:right;">136.000</div>
+              </div>
+            </div>
+            <div class="cart-item">
+              <div><div style="font-weight:700;">Minyak Goreng 1L</div><div class="small muted">Rp 20.000 × 1</div></div>
+              <div class="flex">
+                <div class="qty-ctrl"><button>−</button><span><b>1</b></span><button>+</button></div>
+                <div style="font-weight:700; width:80px; text-align:right;">20.000</div>
+              </div>
+            </div>
+            <div class="cart-item">
+              <div><div style="font-weight:700;">Gula Pasir 1kg</div><div class="small muted">Rp 18.000 × 1</div></div>
+              <div class="flex">
+                <div class="qty-ctrl"><button>−</button><span><b>1</b></span><button>+</button></div>
+                <div style="font-weight:700; width:80px; text-align:right;">18.000</div>
+              </div>
+            </div>
+            <div class="cart-item">
+              <div><div style="font-weight:700;">Air Mineral 600ml</div><div class="small muted">Rp 4.000 × 3</div></div>
+              <div class="flex">
+                <div class="qty-ctrl"><button>−</button><span><b>3</b></span><button>+</button></div>
+                <div style="font-weight:700; width:80px; text-align:right;">12.000</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-total">
+            <div class="row"><span>Subtotal</span><span>Rp 186.000</span></div>
+            <div class="row grand"><span>Total</span><span>Rp 186.000</span></div>
+
+            <div class="pay mt8">
+              <label>Metode Pembayaran</label>
+              <div class="method">
+                <div class="opt active">💵 Cash</div>
+                <div class="opt">📱 QRIS</div>
+                <div class="opt">📒 Utang</div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Uang Diterima</label><input type="number" placeholder="200.000" value="200000"></div>
+                <div class="form-group"><label>Kembalian</label><input type="text" value="Rp 14.000" disabled style="background:var(--green-50);"></div>
+              </div>
+              <button class="btn btn-block btn-lg mt8">Bayar & Cetak Struk</button>
+              <p class="note" style="text-align:center;">Stok ter-update real-time setelah transaksi tersimpan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview struk -->
+      <div class="card mt receipt-panel">
+        <div class="section-title" style="font-size:15px;">Preview Struk (ESC/POS → Printer Eppos via Bluetooth)</div>
+        <div class="receipt">
+          <div class="rhead">
+            <b>TOKO SEMBAKO MANDIRI</b><br>
+            Jl. Melati No. 12, Surabaya<br>Telp: 0812-3456-7890
+          </div>
+          <div class="rline"><span>#TRX-2026-091-021</span><span>01 Sep 09:20</span></div>
+          <div class="rline"><span>Kasir: Dina</span></div>
+          --- BARANG ---
+          <div class="rline"><span>Beras 5kg</span></div>
+          <div class="rline"><span>&nbsp;&nbsp; 2 × 68.000</span><span>136.000</span></div>
+          <div class="rline"><span>Minyak 1L</span></div>
+          <div class="rline"><span>&nbsp;&nbsp; 1 × 20.000</span><span>20.000</span></div>
+          <div class="rline"><span>Gula 1kg</span></div>
+          <div class="rline"><span>&nbsp;&nbsp; 1 × 18.000</span><span>18.000</span></div>
+          <div class="rline"><span>Air 600ml</span></div>
+          <div class="rline"><span>&nbsp;&nbsp; 3 × 4.000</span><span>12.000</span></div>
+          <div class="rtotal rline"><span>TOTAL</span><span>186.000</span></div>
+          <div class="rline"><span>Cash</span><span>200.000</span></div>
+          <div class="rline"><span>Kembali</span><span>14.000</span></div>
+          <div class="rfoot">Terima kasih 🙏<br>Barang yang sudah dibeli<br>tidak dapat ditukar</div>
+        </div>
+        <p class="note">Web Bluetooth API → konek ke printer thermal Eppos. Wajib diakses via HTTPS.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

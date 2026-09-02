@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user"><span class="avatar">T</span></div>
+    </header>
+    <nav class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="produk.html" class="active">Produk</a>
+      <a href="stok.html">Stok</a>
+      <a href="pos.html">POS / Kasir</a>
+      <a href="kasbon.html">Kasbon</a>
+      <a href="laporan.html">Laporan</a>
+    </nav>
+    <main class="layout">
+      <div class="section-title">Manajemen Produk & Kategori</div>
+      <div class="section-sub">Kelola katalog produk beserta harga beli, harga jual, dan satuan.</div>
+
+      <div class="flex between" style="flex-wrap:wrap; gap:12px;">
+        <div class="search" style="flex:1; min-width:220px;">
+          <span class="icon">🔍</span>
+          <input placeholder="Cari produk by nama / kategori…">
+        </div>
+        <div class="flex">
+          <select style="width:auto;">
+            <option>Semua kategori</option>
+            <option>Sembako</option>
+            <option>Minuman</option>
+            <option>Snack</option>
+            <option>Rumah tangga</option>
+          </select>
+          <button class="btn">+ Tambah Produk</button>
+        </div>
+      </div>
+
+      <!-- Kategori chips -->
+      <div class="flex mt8" style="flex-wrap:wrap;">
+        <span class="badge gray">Sembako (24)</span>
+        <span class="badge gray">Minuman (18)</span>
+        <span class="badge gray">Snack (31)</span>
+        <span class="badge gray">Rumah tangga (12)</span>
+        <span class="badge gray">+ Kelola kategori</span>
+      </div>
+
+      <div class="card mt" style="padding-top:8px;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Produk</th><th>Kategori</th><th>Satuan</th>
+                <th class="num">Harga Beli</th><th class="num">Harga Jual</th>
+                <th class="num">Stok</th><th class="num">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Beras Premium 5kg</td><td>Sembako</td><td>pcs</td>
+                <td class="num">62.000</td><td class="num">68.000</td>
+                <td class="num">42</td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+              <tr>
+                <td>Minyak Goreng 1L</td><td>Sembako</td><td>pcs</td>
+                <td class="num">17.500</td><td class="num">20.000</td>
+                <td class="num"><span class="badge red">3</span></td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+              <tr>
+                <td>Gula Pasir 1kg</td><td>Sembako</td><td>pcs</td>
+                <td class="num">16.000</td><td class="num">18.000</td>
+                <td class="num"><span class="badge red">2</span></td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+              <tr>
+                <td>Telur Ayam</td><td>Sembako</td><td>kg</td>
+                <td class="num">24.000</td><td class="num">28.000</td>
+                <td class="num"><span class="badge amber">4</span></td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+              <tr>
+                <td>Kopi Sachet</td><td>Minuman</td><td>dus</td>
+                <td class="num">21.000</td><td class="num">24.000</td>
+                <td class="num">15</td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+              <tr>
+                <td>Mie Instan Goreng</td><td>Snack</td><td>dus</td>
+                <td class="num">102.000</td><td class="num">110.000</td>
+                <td class="num"><span class="badge red">1</span></td>
+                <td class="num"><span style="white-space:nowrap;"><button class="btn sm ghost">Edit</button> <button class="btn sm red">Hapus</button></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mockup form tambah produk -->
+      <div class="card mt">
+        <div class="section-title" style="font-size:15px;">Tambah / Edit Produk (mockup form)</div>
+        <div class="form-row tri mt8">
+          <div class="form-group"><label>Nama Produk</label><input placeholder="cth: Beras Premium 5kg"></div>
+          <div class="form-group"><label>Kategori</label><select><option>Sembako</option><option>Minuman</option><option>Snack</option><option>Rumah tangga</option></select></div>
+          <div class="form-group"><label>Satuan (kg/pcs/liter/dus)</label><select><option>pcs</option><option>kg</option><option>liter</option><option>dus</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Harga Beli (Rp)</label><input type="number" placeholder="17000"></div>
+          <div class="form-group"><label>Harga Jual (Rp)</label><input type="number" placeholder="20000"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Stok Awal</label><input type="number" placeholder="0"></div>
+          <div class="form-group"><label>Stok Minimum (alert)</label><input type="number" placeholder="5"></div>
+        </div>
+        <button class="btn">Simpan Produk</button>
+        <p class="note">Form ini hanya mockup — belum tersambung ke database.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

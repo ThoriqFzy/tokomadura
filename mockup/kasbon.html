@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kasbon — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user"><span class="avatar">T</span></div>
+    </header>
+    <nav class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="produk.html">Produk</a>
+      <a href="stok.html">Stok</a>
+      <a href="pos.html">POS / Kasir</a>
+      <a href="kasbon.html" class="active">Kasbon</a>
+      <a href="laporan.html">Laporan</a>
+    </nav>
+    <main class="layout">
+      <div class="section-title">Kasbon / Utang Pelanggan</div>
+      <div class="section-sub">Kelola pelanggan langganan & piutang beredar.</div>
+
+      <div class="grid cols-3">
+        <div class="card stat">
+          <span class="label">Piutang Beredar</span>
+          <span class="value amber">Rp 1.420.000</span>
+          <span class="sub">dari 23 pelanggan</span>
+        </div>
+        <div class="card stat">
+          <span class="label">Pelanggan Langganan</span>
+          <span class="value">37</span>
+          <span class="sub">23 berutang · 14 lunas</span>
+        </div>
+        <div class="card stat">
+          <span class="label">Tertagih Bulan Ini</span>
+          <span class="value green">Rp 640.000</span>
+          <span class="sub">18 pembayaran</span>
+        </div>
+      </div>
+
+      <div class="grid sidebar mt">
+        <div class="card">
+          <div class="flex between">
+            <div class="section-title" style="font-size:15px;">Daftar Piutang</div>
+            <button class="btn sm">+ Tambah Pelanggan</button>
+          </div>
+          <div class="table-wrap mt8">
+            <table>
+              <thead><tr><th>Pelanggan</th><th class="num">Saldo Utang</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody>
+                <tr><td>Bu Sari</td><td class="num">Rp 385.000</td><td><span class="badge amber">Utang</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+                <tr><td>Pak Darmo</td><td class="num">Rp 240.000</td><td><span class="badge amber">Utang</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+                <tr><td>Bu Ani</td><td class="num">Rp 120.000</td><td><span class="badge amber">Utang</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+                <tr><td>Pak Joko</td><td class="num">Rp 0</td><td><span class="badge green">Lunas</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+                <tr><td>Bu Rina</td><td class="num">Rp 90.000</td><td><span class="badge amber">Utang</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+                <tr><td>Mas Budi</td><td class="num">Rp 585.000</td><td><span class="badge red">Lama</span></td><td><button class="btn sm ghost">Catat Bayar</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note mt">Hapus/waive utang <b>hanya owner</b> — kasir hanya bisa catat transaksi & pelunasan (audit control).</p>
+        </div>
+
+        <div class="card">
+          <div class="section-title" style="font-size:15px;">Catat Pelunasan</div>
+          <div class="form-group"><label>Pelanggan</label><select><option>Bu Sari</option><option>Pak Darmo</option><option>Bu Ani</option></select></div>
+          <div class="form-row">
+            <div class="form-group"><label>Jumlah (Rp)</label><input type="number" placeholder="100.000"></div>
+            <div class="form-group"><label>Tanggal</label><input type="date" value="2026-09-01"></div>
+          </div>
+          <button class="btn btn-block">Simpan Pembayaran</button>
+          <p class="note">Pelanggan bisa bayar cicil atau lunas; tiap bayaran tercatat (tanggal, jumlah, siapa terima).</p>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <div class="section-title" style="font-size:15px;">Riwayat Pelunasan</div>
+        <div class="table-wrap mt8">
+          <table>
+            <thead><tr><th>Tanggal</th><th>Pelanggan</th><th class="num">Dibayar</th><th class="num">Sisa Utang</th><th>Diterima Oleh</th></tr></thead>
+            <tbody>
+              <tr><td>01 Sep 08:30</td><td>Bu Sari</td><td class="num">Rp 100.000</td><td class="num">Rp 285.000</td><td>Owner</td></tr>
+              <tr><td>31 Aug 14:10</td><td>Pak Joko</td><td class="num">Rp 240.000</td><td class="num">Rp 0</td><td>Kasir</td></tr>
+              <tr><td>30 Aug 11:05</td><td>Bu Ani</td><td class="num">Rp 60.000</td><td class="num">Rp 120.000</td><td>Kasir</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

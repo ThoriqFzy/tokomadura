@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan — Toko Sembako</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="logo">🛒</span> Toko Sembako</div>
+      <div class="user"><span class="avatar">T</span></div>
+    </header>
+    <nav class="nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="produk.html">Produk</a>
+      <a href="stok.html">Stok</a>
+      <a href="pos.html">POS / Kasir</a>
+      <a href="kasbon.html">Kasbon</a>
+      <a href="laporan.html" class="active">Laporan</a>
+    </nav>
+    <main class="layout">
+      <div class="section-title">Laporan & Analisis</div>
+      <div class="section-sub">Owner only — akses terbatas untuk kasir.</div>
+
+      <!-- Filter -->
+      <div class="card">
+        <div class="flex" style="flex-wrap:wrap; gap:12px;">
+          <div class="form-group" style="margin:0;"><label>Dari</label><input type="date" value="2026-09-01" style="width:auto;"></div>
+          <div class="form-group" style="margin:0;"><label>Sampai</label><input type="date" value="2026-09-01" style="width:auto;"></div>
+          <div class="form-group" style="margin:0;"><label>Periode</label><select style="width:auto;"><option>Harian</option><option>Mingguan</option><option>Bulanan</option></select></div>
+          <div class="form-group" style="margin:0;"><label>Metode</label><select style="width:auto;"><option>Semua</option><option>Cash</option><option>QRIS</option><option>Utang</option></select></div>
+          <button class="btn">Terapkan Filter</button>
+          <button class="btn ghost">Export</button>
+        </div>
+      </div>
+
+      <div class="grid cols-4 mt">
+        <div class="card stat"><span class="label">Omzet</span><span class="value">Rp 2.845.500</span><span class="sub">47 transaksi</span></div>
+        <div class="card stat"><span class="label">Modal (est.)</span><span class="value">Rp 2.210.000</span><span class="sub">dari total harga beli</span></div>
+        <div class="card stat"><span class="label">Margin Kasar</span><span class="value green">Rp 635.500</span><span class="sub">~22%</span></div>
+        <div class="card stat"><span class="label">Piutang</span><span class="value amber">Rp 313.500</span><span class="sub">hari ini</span></div>
+      </div>
+
+      <div class="grid sidebar mt">
+        <div class="card">
+          <div class="section-title" style="font-size:15px;">Produk Terlaris & Paling Lambat</div>
+          <div class="list-row"><div><span class="l-main">Beras Premium 5kg</span><div class="l-sub">Sembako</div></div><div style="text-align:right;">38 pcs<br><span class="muted">Rp 836.000</span></div></div>
+          <div class="list-row"><div><span class="l-main">Air Mineral 600ml</span><div class="l-sub">Minuman</div></div><div style="text-align:right;">52 pcs<br><span class="muted">Rp 208.000</span></div></div>
+          <div class="list-row"><div><span class="l-main">Gula Pasir 1kg</span><div class="l-sub">Sembako</div></div><div style="text-align:right;">21 pcs<br><span class="muted">Rp 378.000</span></div></div>
+          <hr style="border:none;border-top:1px solid var(--border);margin:10px 0;">
+          <div class="section-title small muted">Paling Lambat Terjual</div>
+          <div class="list-row"><div class="l-main">Sabun Batang</div><div><span class="badge gray">0 terjual 7 hari</span></div></div>
+          <div class="list-row"><div class="l-main">Kecap Botol 600ml</div><div><span class="badge gray">1 terjual 7 hari</span></div></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title" style="font-size:15px;">Transaksi Terakhir (today)</div>
+          <div class="table-wrap mt8">
+            <table>
+              <thead><tr><th>ID</th><th>Metode</th><th class="num">Total</th></tr></thead>
+              <tbody>
+                <tr><td>#021</td><td><span class="badge green">Cash</span></td><td class="num">186.000</td></tr>
+                <tr><td>#020</td><td><span class="badge blue">QRIS</span></td><td class="num">52.500</td></tr>
+                <tr><td>#019</td><td><span class="badge amber">Utang</span></td><td class="num">45.000</td></tr>
+                <tr><td>#018</td><td><span class="badge green">Cash</span></td><td class="num">110.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
