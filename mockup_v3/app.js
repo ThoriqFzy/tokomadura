@@ -16,7 +16,10 @@
   var OWNER_PAGES = ["dashboard.html", "produk.html", "stok.html", "laporan.html"];
   // Halaman yang boleh dibuka kasir
   var KASIR_PAGES = ["pos.html", "kasbon.html"];
-  var ROOT = "mockup_v3/";
+  // NOTE: server web diserve DARI DALAM folder mockup_v3, jadi semua path
+  // memakai NAMA FILE relatif saja (tanpa prefix folder). Pakai ROOT kosong
+  // supaya redirect tidak bikin 404 (bug versi sebelumnya: ROOT="mockup_v3/").
+  var ROOT = "";
 
   // ---- helpers ----
   function $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
