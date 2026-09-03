@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Toko Sembako') · Toko Sembako</title>
+    <title>@yield('title', 'Toko Madura') · Toko Madura</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased bg-slate-100 text-slate-800">
@@ -13,8 +13,8 @@
         <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
             <div class="flex items-center justify-between px-4 h-14">
                 <div class="flex items-center gap-2">
-                    <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">S</span>
-                    <span class="font-bold text-slate-800">Toko Sembako</span>
+                    <img src="{{ asset('img/logo-toko.png') }}" alt="Logo" class="w-8 h-8 rounded-lg object-cover ring-1 ring-slate-200">
+                    <span class="font-bold text-slate-800">Toko Madura</span>
                 </div>
                 <div class="flex items-center gap-3">
                     @auth

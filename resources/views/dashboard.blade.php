@@ -2,9 +2,12 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="mb-6">
-    <h1 class="text-2xl font-bold text-slate-800">Dashboard</h1>
-    <p class="text-sm text-slate-500 mt-0.5">Ringkasan kondisi toko hari ini</p>
+<div class="flex items-center gap-3 mb-6">
+    <img src="{{ asset('img/logo-toko.png') }}" alt="Logo Toko Madura" class="w-12 h-12 rounded-xl object-cover ring-2 ring-white shadow">
+    <div>
+        <h1 class="text-2xl font-bold text-slate-800">Dashboard</h1>
+        <p class="text-sm text-slate-500 mt-0.5">Ringkasan kondisi toko hari ini</p>
+    </div>
 </div>
 
 {{-- Kartu statistik --}}
