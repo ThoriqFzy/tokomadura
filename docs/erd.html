@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERD — Toko Sembako</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:24px; }
+  h1 { font-size:22px; color:#4ade80; margin-bottom:4px; }
+  .sub { color:#94a3b8; font-size:13px; margin-bottom:20px; }
+  .card { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px; margin-bottom:16px; }
+  .card h2 { font-size:15px; margin:0 0 10px; color:#f8fafc; }
+  .card h2 span { color:#64748b; font-weight:400; font-size:12px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; }
+  .legend b { color:#4ade80; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { text-align:left; color:#94a3b8; font-weight:600; padding:4px 6px; border-bottom:1px solid #334155; }
+  td { padding:4px 6px; border-bottom:1px solid #1e293b; }
+  .pk { color:#fbbf24; font-weight:700; }
+  .fk { color:#38bdf8; }
+  .rel { font-size:12px; line-height:1.7; }
+  .rel b { color:#e2e8f0; }
+  .mt { margin-top:8px; }
+  .note { background:#082f49; border:1px solid #075985; border-radius:8px; padding:8px 12px; font-size:12px; color:#7dd3fc; }
+</style>
+</head>
+<body>
+<h1>▼ ERD — Sistem Toko Sembako</h1>
+<div class="sub">Laravel 11 + MySQL · 9 tabel bisnis + 3 pivot Spatie · <span class="legend"><b>PK</b>=Primary Key</span> <span class="legend"><b style="color:#38bdf8;">FK</b>=Foreign Key</span></div>
+
+<div class="grid">
+  <div class="card"><h2>users <span>· auth + role (Spatie)</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td>name</td><td>varchar(255)</td><td></td></tr>
+    <tr><td>email</td><td>varchar(255)</td><td>unique · login</td></tr>
+    <tr><td>email_verified_at</td><td>timestamp?</td><td></td></tr>
+    <tr><td>password</td><td>varchar(255)</td><td>bcrypt</td></tr>
+    <tr><td>remember_token</td><td>varchar(100)?</td><td></td></tr>
+    <tr><td>created_at/updated_at</td><td>timestamp</td><td></td></tr></table>
+    <div class="note mt">Role pakai pivot Spatie (roles, permissions, model_has_roles) — tanpa kolom role manual.</div>
+  </div>
+
+  <div class="card"><h2>categories <span>· kategori produk</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td>name</td><td>varchar(100)</td><td></td></tr>
+    <tr><td>slug</td><td>varchar(100)</td><td>unique</td></tr>
+    <tr><td>created_at/updated_at</td><td>timestamp</td><td></td></tr></table>
+  </div>
+
+  <div class="card"><h2>products <span>· ⭐ SKU</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">category_id</td><td>bigint FK</td><td>→ categories</td></tr>
+    <tr><td>sku</td><td>varchar(20)</td><td>unique · BRG001</td></tr>
+    <tr><td>name</td><td>varchar(255)</td><td></td></tr>
+    <tr><td>unit</td><td>varchar(20)</td><td>kg/pcs/ltr/dus</td></tr>
+    <tr><td>buy_price</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>sell_price</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>stock</td><td>integer</td><td>auto-update</td></tr>
+    <tr><td>min_stock</td><td>integer</td><td>default 5</td></tr>
+    <tr><td>is_active</td><td>boolean</td><td>default true</td></tr></table>
+  </div>
+
+  <div class="card"><h2>price_histories <span>· ⭐ riwayat harga</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">product_id</td><td>bigint FK</td><td>→ products</td></tr>
+    <tr><td>buy_price</td><td>decimal(12,2)</td><td>harga lama</td></tr>
+    <tr><td>sell_price</td><td>decimal(12,2)</td><td>harga lama</td></tr>
+    <tr><td class="fk">changed_by</td><td>bigint FK?</td><td>→ users</td></tr>
+    <tr><td>changed_at</td><td>timestamp</td><td></td></tr></table>
+    <div class="note mt">Otomatis tercatat tiap harga produk berubah (observer).</div>
+  </div>
+
+  <div class="card"><h2>stock_movements <span>· audit stok</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">product_id</td><td>bigint FK</td><td>→ products</td></tr>
+    <tr><td>type</td><td>enum(in,out)</td><td></td></tr>
+    <tr><td>qty</td><td>integer</td><td></td></tr>
+    <tr><td>note</td><td>varchar(255)?</td><td></td></tr>
+    <tr><td class="fk">created_by</td><td>bigint FK</td><td>→ users</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td></td></tr></table>
+  </div>
+
+  <div class="card"><h2>customers <span>· pelanggan</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td>name</td><td>varchar(255)</td><td></td></tr>
+    <tr><td>phone</td><td>varchar(20)</td><td></td></tr>
+    <tr><td>debt_balance</td><td>decimal(12,2)</td><td>default 0</td></tr>
+    <tr><td>created_at/updated_at</td><td>timestamp</td><td></td></tr></table>
+  </div>
+
+  <div class="card"><h2>transactions <span>· ⭐ status</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">cashier_id</td><td>bigint FK</td><td>→ users</td></tr>
+    <tr><td class="fk">customer_id</td><td>bigint FK?</td><td>→ customers (jika utang)</td></tr>
+    <tr><td>payment_method</td><td>enum(cash,qris,debt)</td><td></td></tr>
+    <tr><td>status</td><td>enum(completed,voided)</td><td>⭐</td></tr>
+    <tr><td>total_amount</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>paid_amount</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>change_amount</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td>waktu transaksi</td></tr></table>
+  </div>
+
+  <div class="card"><h2>transaction_items</h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">transaction_id</td><td>bigint FK</td><td>→ transactions</td></tr>
+    <tr><td class="fk">product_id</td><td>bigint FK</td><td>→ products</td></tr>
+    <tr><td>qty</td><td>integer</td><td></td></tr>
+    <tr><td>price_at_sale</td><td>decimal(12,2)</td><td>snapshot! wajib</td></tr>
+    <tr><td>subtotal</td><td>decimal(12,2)</td><td>qty × price</td></tr></table>
+    <div class="note mt">price_at_sale = harga saat transaksi (histori lama tidak berubah kalaupun harga produk naik).</div>
+  </div>
+
+  <div class="card"><h2>debt_payments <span>· pelunasan kasbon</span></h2>
+    <table><tr><th>Kolom</th><th>Tipe</th><th></th></tr>
+    <tr><td class="pk">id</td><td>bigint PK</td><td></td></tr>
+    <tr><td class="fk">customer_id</td><td>bigint FK</td><td>→ customers</td></tr>
+    <tr><td>amount</td><td>decimal(12,2)</td><td></td></tr>
+    <tr><td>paid_at</td><td>timestamp</td><td></td></tr>
+    <tr><td class="fk">recorded_by</td><td>bigint FK</td><td>→ users</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td></td></tr></table>
+  </div>
+</div>
+
+<h2 style="color:#4ade80;margin-top:12px;">🔗 Relasi</h2>
+<div class="card rel">
+  <b>users</b> 1─∞ stock_movements (created_by) ·
+  <b>users</b> 1─∞ transactions (cashier_id) ·
+  <b>users</b> 1─∞ debt_payments (recorded_by) ·
+  <b>users</b> 1─∞ price_histories (changed_by)<br>
+  <b>categories</b> 1─∞ <b>products</b> (category_id) ·
+  <b>products</b> 1─∞ stock_movements ·
+  <b>products</b> 1─∞ transaction_items ·
+  <b>products</b> 1─∞ price_histories<br>
+  <b>customers</b> 1─∞ transactions (customer_id) ·
+  <b>customers</b> 1─∞ debt_payments<br>
+  <b>transactions</b> 1─∞ transaction_items
+</div>
+
+<div class="card">
+  <h2>Pivot Spatie (punya package)</h2>
+  <div class="rel">roles · permissions · model_has_roles · model_has_permissions · role_has_permissions</div>
+  <div class="note mt">Dikerjakan package `spatie/laravel-permission` otomatis — tidak perlu migration manual.</div>
+</div>
+
+</body>
+</html>
