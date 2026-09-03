@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('produk', ProdukController::class)->except(['show']);
         Route::resource('kategori', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::resource('stok', StokController::class)->only(['index']);
+        Route::resource('stok', StokController::class)->only(['index', 'store']);
         Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
     });
 
