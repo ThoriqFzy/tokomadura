@@ -2,12 +2,18 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="flex items-center gap-3 mb-6">
-    <img src="{{ asset('img/logo-toko.png') }}" alt="Logo Toko Madura" class="w-12 h-12 rounded-xl object-cover ring-2 ring-white shadow">
-    <div>
-        <h1 class="text-2xl font-bold text-slate-800">Dashboard</h1>
-        <p class="text-sm text-slate-500 mt-0.5">Ringkasan kondisi toko hari ini</p>
-    </div>
+<div class="mb-6">
+    @php
+        $hour = (int) now()->format('H');
+        $greeting = match(true) {
+            $hour < 11 => 'Selamat Pagi',
+            $hour < 15 => 'Selamat Siang',
+            $hour < 18 => 'Selamat Sore',
+            default => 'Selamat Malam',
+        };
+    @endphp
+    <h1 class="text-2xl lg:text-3xl font-extrabold text-slate-800">{{ $greeting }}, {{ auth()->user()->name }} 👋</h1>
+    <p class="text-sm text-slate-500 mt-1">Ini ringkasan kondisi toko hari ini, <span class="font-medium text-slate-600">{{ now()->translatedFormat('l, d F Y') }}</span></p>
 </div>
 
 {{-- Kartu statistik --}}
