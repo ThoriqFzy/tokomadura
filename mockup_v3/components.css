@@ -63,7 +63,7 @@
 /* Search input with icon */
 .srch { position: relative; }
 .srch .si { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--fg-muted); }
-.srch .input { padding-left: 40px; }
+.srch .input { padding-left: 40px; text-align: left !important; }
 
 /* ---- Badge ---- */
 .badge {
