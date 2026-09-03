@@ -22,12 +22,15 @@
             <div class="absolute -bottom-32 -right-20 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl"></div>
 
             {{-- Branding --}}
-            <div class="flex flex-col items-center mb-8 relative">
-                <div class="w-20 h-20 bg-white/95 rounded-2xl shadow-xl flex items-center justify-center mb-3">
-                    <span class="text-4xl font-extrabold text-emerald-600">S</span>
+            <div class="flex flex-col items-center mb-6 relative">
+                <div class="relative mb-3">
+                    <img src="{{ asset('img/logo-toko.png') }}" alt="Logo Toko Madura"
+                        class="w-28 h-28 lg:w-32 lg:h-32 object-cover rounded-full ring-4 ring-white/95 shadow-2xl">
+                    {{-- Lingkaran aksen di belakang --}}
+                    <div class="absolute -inset-2 rounded-full bg-white/20 blur-sm -z-10"></div>
                 </div>
-                <h1 class="text-white text-3xl font-extrabold tracking-tight">Toko Sembako</h1>
-                <p class="text-emerald-100/90 text-sm mt-1">Sistem kasir & manajemen toko</p>
+                <h1 class="text-white text-3xl font-extrabold tracking-tight drop-shadow">Toko Madura</h1>
+                <p class="text-emerald-100/90 text-sm mt-1 drop-shadow">Sumber Rejeki · Sistem kasir & manajemen toko</p>
             </div>
 
             {{-- Kartu login --}}
