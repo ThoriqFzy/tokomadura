@@ -8,12 +8,27 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->orderBy('name')->get();
+        $q = trim($request->query('q', ''));
+        $catId = $request->query('category');
+
+        $products = Product::with('category')
+            ->when($q !== '', function ($query) use ($q) {
+                $query->where(function ($w) use ($q) {
+                    $w->where('name', 'like', "%{$q}%")
+                      ->orWhere('sku', 'like', "%{$q}%");
+                });
+            })
+            ->when($catId, function ($query) use ($catId) {
+                $query->where('category_id', $catId);
+            })
+            ->orderBy('name')
+            ->get();
+
         $categories = Category::orderBy('name')->get();
 
-        return view('produk.index', compact('products', 'categories'));
+        return view('produk.index', compact('products', 'categories', 'q', 'catId'));
     }
 
     public function create()
@@ -35,6 +50,7 @@ class ProdukController extends Controller
             'min_stock'   => 'required|integer|min:0',
         ]);
 
+        $validated['is_active'] = $request->boolean('is_active');
         Product::create($validated);
 
         return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan!');
@@ -59,6 +75,7 @@ class ProdukController extends Controller
             'min_stock'   => 'required|integer|min:0',
         ]);
 
+        $validated['is_active'] = $request->boolean('is_active');
         $produk->update($validated);
 
         return redirect()->route('produk.index')->with('success', 'Produk berhasil diupdate!');

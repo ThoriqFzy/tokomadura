@@ -60,6 +60,10 @@
             <input name="min_stock" type="number" required class="mt-1 w-full rounded-lg border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" placeholder="5">
         </div>
     </div>
+    <div class="flex items-center gap-2">
+        <input name="is_active" type="checkbox" value="1" checked class="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500">
+        <label class="text-sm font-semibold text-slate-700">Produk Aktif (tampil di POS / kasir)</label>
+    </div>
     <div class="flex gap-3">
         <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2 rounded-lg transition">Simpan</button>
         <a href="{{ route('produk.index') }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-5 py-2 rounded-lg transition">Batal</a>

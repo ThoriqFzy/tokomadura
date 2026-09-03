@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KasbonController;
 use App\Http\Controllers\LaporanController;
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:owner')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('produk', ProdukController::class)->except(['show']);
+        Route::resource('kategori', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('stok', StokController::class)->only(['index']);
         Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
     });
