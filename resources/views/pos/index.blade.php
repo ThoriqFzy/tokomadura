@@ -25,17 +25,24 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
             <template x-for="p in filteredProducts" :key="p.id">
                 <button type="button" @click="addToCart(p)"
-                    class="bg-white rounded-xl border border-slate-200 p-3 text-left hover:border-emerald-400 hover:shadow-md transition focus:ring-2 focus:ring-emerald-400 focus:outline-none">
-                    <div class="w-full aspect-square bg-slate-50 rounded-lg flex items-center justify-center mb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-slate-300"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                    class="bg-white rounded-xl border border-slate-200 p-3 text-left hover:border-emerald-400 hover:shadow-md transition focus:ring-2 focus:ring-emerald-400 focus:outline-none group">
+                    <div class="relative w-full aspect-square bg-slate-50 rounded-lg overflow-hidden mb-2 flex items-center justify-center">
+                        <template x-if="p.image">
+                            <img :src="'{{ asset('img/products') }}/' + p.image.split('/').pop()" :alt="p.name"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-200" loading="lazy">
+                        </template>
+                        <template x-if="!p.image">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-slate-300"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                        </template>
+                        <span class="absolute top-1 right-1 text-[10px] px-1.5 py-0.5 rounded-full"
+                            :class="p.stock <= p.min_stock ? (p.stock <= 0 ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700') : 'bg-emerald-100 text-emerald-700'"
+                            x-text="p.stock + ' ' + p.unit"></span>
                     </div>
                     <div class="font-semibold text-sm text-slate-800 truncate" x-text="p.name"></div>
-                    <div class="text-xs text-slate-400 mt-0.5" x-text="p.sku"></div>
+                    <div class="text-xs text-slate-400 mt-0.5 truncate" x-text="p.sku"></div>
                     <div class="flex items-center justify-between mt-2">
                         <span class="text-emerald-700 font-bold text-sm" x-text="'Rp' + num(p.sell_price)"></span>
-                        <span class="text-xs px-1.5 py-0.5 rounded-full"
-                            :class="p.stock <= p.min_stock ? (p.stock <= 0 ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700') : 'bg-slate-100 text-slate-500'"
-                            x-text="p.stock + ' ' + p.unit"></span>
+                        <span class="text-[11px] text-emerald-600 font-semibold">Tambah +</span>
                     </div>
                 </button>
             </template>

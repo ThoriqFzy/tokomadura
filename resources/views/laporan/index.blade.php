@@ -62,7 +62,10 @@ function toggleCustom() {
 {{-- Omzet per metode + Produk terlaris --}}
 <div class="grid lg:grid-cols-2 gap-5 mb-6">
     <div class="bg-white rounded-xl border border-slate-200 p-5">
-        <h3 class="font-semibold text-slate-800 mb-4">💳 Omzet per Metode</h3>
+        <h3 class="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-emerald-600"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
+            Omzet per Metode
+        </h3>
         @php
             $methods = [
                 'cash' => ['Tunai', 'text-emerald-600', $stats['tunai']],
@@ -87,7 +90,10 @@ function toggleCustom() {
     </div>
 
     <div class="bg-white rounded-xl border border-slate-200 p-5">
-        <h3 class="font-semibold text-slate-800 mb-4">🏆 Produk Terlaris</h3>
+        <h3 class="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-emerald-600"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0M10.5 2.25v.75m3-0.75v.75"/></svg>
+            Produk Terlaris
+        </h3>
         @if($topProductsQty->count())
         <div class="space-y-3">
             @foreach($topProductsQty as $i => $top)
@@ -110,7 +116,10 @@ function toggleCustom() {
 {{-- Stok kritis + Riwayat transaksi --}}
 <div class="grid lg:grid-cols-3 gap-5 mb-6">
     <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div class="px-4 py-3 border-b border-slate-100 font-semibold text-slate-700">⚠️ Stok Kritis</div>
+        <div class="px-4 py-3 border-b border-slate-100 font-semibold text-slate-700 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-amber-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            Stok Kritis
+        </div>
         @if($lowStock->count())
         <div class="divide-y divide-slate-50">
             @foreach($lowStock as $p)
@@ -128,8 +137,9 @@ function toggleCustom() {
     </div>
 
     <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div class="px-4 py-3 border-b border-slate-100 font-semibold text-slate-700">
-            🧾 Riwayat Transaksi <span class="text-xs font-normal text-slate-400">{{ $start->format('d M') }} – {{ $end->format('d M Y') }}</span>
+        <div class="px-4 py-3 border-b border-slate-100 font-semibold text-slate-700 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-emerald-600"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+            Riwayat Transaksi <span class="text-xs font-normal text-slate-400">{{ $start->format('d M') }} – {{ $end->format('d M Y') }}</span>
         </div>
         @if($transactionsList->count())
         <div class="max-h-96 overflow-y-auto divide-y divide-slate-50">
