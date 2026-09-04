@@ -47,5 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ---- Owner & Kasir ----
     Route::get('pos', [PosController::class, 'index'])->name('pos.index');
+    Route::post('pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
+    Route::get('pos/receipt/{id}', [PosController::class, 'receipt'])->name('pos.receipt');
     Route::get('kasbon', [KasbonController::class, 'index'])->name('kasbon.index');
 });

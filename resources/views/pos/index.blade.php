@@ -2,26 +2,255 @@
 @section('title', 'POS / Kasir')
 
 @section('content')
-<div class="mb-6">
-    <h1 class="text-2xl font-bold text-slate-800">POS / Kasir</h1>
-    <p class="text-sm text-slate-500 mt-0.5">Transaksi penjualan — {{ now()->format('d M Y, H:i') }}</p>
+<div x-data="posApp()" x-init="init()" class="grid lg:grid-cols-5 gap-5">
+
+    {{-- === KOLOM KIRI: Daftar Produk (3/5) === --}}
+    <div class="lg:col-span-3 space-y-4">
+        {{-- Search + filter kategori --}}
+        <div class="flex flex-wrap gap-3">
+            <div class="relative flex-1 min-w-[200px]">
+                <input type="text" x-model="search" placeholder="Cari produk / SKU…"
+                    class="w-full rounded-lg border-slate-300 pl-10 pr-4 py-2.5 text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-slate-400 absolute left-3 top-2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z"/></svg>
+            </div>
+            <select x-model="filterCat" class="rounded-lg border-slate-300 py-2.5 text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                <option value="">Semua</option>
+                @foreach($categories as $c)
+                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        {{-- Grid produk --}}
+        <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+            <template x-for="p in filteredProducts" :key="p.id">
+                <button type="button" @click="addToCart(p)"
+                    class="bg-white rounded-xl border border-slate-200 p-3 text-left hover:border-emerald-400 hover:shadow-md transition focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                    <div class="w-full aspect-square bg-slate-50 rounded-lg flex items-center justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-slate-300"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+                    </div>
+                    <div class="font-semibold text-sm text-slate-800 truncate" x-text="p.name"></div>
+                    <div class="text-xs text-slate-400 mt-0.5" x-text="p.sku"></div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-emerald-700 font-bold text-sm" x-text="'Rp' + num(p.sell_price)"></span>
+                        <span class="text-xs px-1.5 py-0.5 rounded-full"
+                            :class="p.stock <= p.min_stock ? (p.stock <= 0 ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700') : 'bg-slate-100 text-slate-500'"
+                            x-text="p.stock + ' ' + p.unit"></span>
+                    </div>
+                </button>
+            </template>
+            <template x-if="filteredProducts.length === 0">
+                <div class="col-span-full py-12 text-center text-slate-400">Produk tidak ditemukan.</div>
+            </template>
+        </div>
+    </div>
+
+    {{-- === KOLOM KANAN: Keranjang + Pembayaran (2/5) === --}}
+    <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl border border-slate-200 sticky top-20 space-y-0 overflow-hidden">
+
+            {{-- Header keranjang --}}
+            <div class="px-4 py-3 bg-emerald-600 text-white flex items-center justify-between">
+                <span class="font-bold text-sm">🛒 Keranjang (<span x-text="cartCount"></span>)</span>
+                <button type="button" @click="clearCart()" x-show="cart.length > 0" class="text-emerald-100 hover:text-white text-xs">Kosongkan</button>
+            </div>
+
+            {{-- Items --}}
+            <div class="max-h-[340px] overflow-y-auto divide-y divide-slate-100">
+                <template x-if="cart.length === 0">
+                    <div class="py-10 text-center text-slate-400 text-sm">Belum ada produk dipilih.</div>
+                </template>
+                <template x-for="(item, idx) in cart" :key="item.id">
+                    <div class="px-4 py-3 flex items-center gap-3">
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm font-semibold text-slate-800 truncate" x-text="item.name"></div>
+                            <div class="text-xs text-slate-400" x-text="'Rp' + num(item.sell_price) + ' × ' + item.qty"></div>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <button type="button" @click="changeQty(idx, -1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">−</button>
+                            <span class="w-8 text-center text-sm font-semibold" x-text="item.qty"></span>
+                            <button type="button" @click="changeQty(idx, 1)" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">+</button>
+                        </div>
+                        <div class="text-sm font-bold text-slate-800 w-24 text-right" x-text="'Rp' + num(item.sell_price * item.qty)"></div>
+                        <button type="button" @click="removeItem(idx)" class="text-rose-400 hover:text-rose-600 ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </template>
+            </div>
+
+            {{-- Total --}}
+            <div class="px-4 py-3 bg-slate-50 border-t border-slate-200">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-sm text-slate-500">Subtotal</span>
+                    <span class="font-bold text-lg text-slate-800" x-text="'Rp' + num(grandTotal)"></span>
+                </div>
+            </div>
+
+            {{-- Metode pembayaran --}}
+            <div class="px-4 py-4 space-y-4 border-t border-slate-200">
+                {{-- Pelanggan (jika utang) --}}
+                <div x-show="paymentMethod === 'debt'" x-transition>
+                    <label class="text-xs font-semibold text-slate-500 uppercase mb-1 block">Pilih Pelanggan *</label>
+                    <select x-model="customerId" class="w-full rounded-lg border-slate-300 text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                        <option value="">— Pilih —</option>
+                        @foreach($customers as $c)
+                        <option value="{{ $c->id }}">{{ $c->name }} ({{ $c->phone }})</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- Input uang tunai --}}
+                <div x-show="paymentMethod === 'cash'" x-transition>
+                    <label class="text-xs font-semibold text-slate-500 uppercase mb-1 block">Uang Diterima</label>
+                    <input type="number" x-model.number="amountGiven" min="0" placeholder="0"
+                        class="w-full rounded-lg border-slate-300 text-sm focus:border-emerald-500 focus:ring-emerald-500" inputmode="numeric">
+                    <div x-show="amountGiven >= grandTotal && grandTotal > 0" class="mt-1 text-sm text-emerald-600 font-semibold">
+                        Kembalian: <span x-text="'Rp' + num(amountGiven - grandTotal)"></span>
+                    </div>
+                    <div x-show="amountGiven > 0 && amountGiven < grandTotal" class="mt-1 text-sm text-rose-600 font-semibold">
+                        Kurang: <span x-text="'Rp' + num(grandTotal - amountGiven)"></span>
+                    </div>
+                </div>
+
+                {{-- Tombol metode --}}
+                <div class="grid grid-cols-3 gap-2">
+                    <button type="button" @click="paymentMethod = 'cash'" class="py-2.5 rounded-lg text-sm font-semibold border-2 transition"
+                        :class="paymentMethod === 'cash' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">💵 Tunai</button>
+                    <button type="button" @click="paymentMethod = 'qris'" class="py-2.5 rounded-lg text-sm font-semibold border-2 transition"
+                        :class="paymentMethod === 'qris' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">📱 QRIS</button>
+                    <button type="button" @click="paymentMethod = 'debt'" class="py-2.5 rounded-lg text-sm font-semibold border-2 transition"
+                        :class="paymentMethod === 'debt' ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'">📝 Utang</button>
+                </div>
+
+                {{-- Tombol proses --}}
+                <button type="button" @click="checkout()" :disabled="!canCheckout || submitting"
+                    class="w-full py-3 rounded-lg text-white font-bold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    :class="paymentMethod === 'debt' ? 'bg-amber-500 hover:bg-amber-600' : 'bg-emerald-600 hover:bg-emerald-700'">
+                    <span x-show="!submitting">Proses Pembayaran</span>
+                    <span x-show="submitting">Memproses…</span>
+                </button>
+
+                {{-- Error --}}
+                <div x-show="errorMsg" x-transition class="text-sm text-rose-600 bg-rose-50 rounded-lg px-3 py-2" x-text="errorMsg"></div>
+
+                {{-- Sukses --}}
+                <div x-show="successMsg" x-transition class="text-sm text-emerald-700 bg-emerald-50 rounded-lg px-3 py-2">
+                    <span x-text="successMsg"></span>
+                    <a x-show="receiptId" :href="'{{ url("pos/receipt") }}/' + receiptId" target="_blank" class="ml-2 underline font-semibold">Cetak Struk →</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-@if(session('success'))
-<div class="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg text-sm">
-    ✅ {{ session('success') }}
-</div>
-@endif
+<script>
+window.posApp = function() {
+    return {
+        allProducts: @json($products),
+        search: '',
+        filterCat: '',
+        cart: [],
+        paymentMethod: 'cash',
+        customerId: '',
+        amountGiven: 0,
+        submitting: false,
+        errorMsg: '',
+        successMsg: '',
+        receiptId: null,
 
-<div class="bg-white rounded-xl border border-slate-200 p-6">
-    <p class="text-slate-600">
-        ⚙️ <b>Modul POS sedang dibangun (Fase 3).</b> Fondasi Fase 0 sudah siap.
-    </p>
-    <p class="text-sm text-slate-500 mt-2">
-        {{ $products->count() }} produk aktif · {{ $categories->count() }} kategori tersedia untuk transaksi.
-    </p>
-    <a href="{{ route('produk.index') }}" class="inline-block mt-4 text-sm text-emerald-600 hover:underline">
-        Kelola produk →
-    </a>
-</div>
+        init() {},
+
+        get filteredProducts() {
+            return this.allProducts.filter(p => {
+                const matchSearch = !this.search || p.name.toLowerCase().includes(this.search.toLowerCase()) || p.sku.toLowerCase().includes(this.search.toLowerCase());
+                const matchCat = !this.filterCat || p.category_id == this.filterCat;
+                return matchSearch && matchCat;
+            });
+        },
+
+        get cartCount() {
+            return this.cart.reduce((sum, i) => sum + i.qty, 0);
+        },
+
+        get grandTotal() {
+            return this.cart.reduce((sum, i) => sum + (i.sell_price * i.qty), 0);
+        },
+
+        get canCheckout() {
+            if (this.cart.length === 0) return false;
+            if (this.paymentMethod === 'cash' && this.amountGiven < this.grandTotal) return false;
+            if (this.paymentMethod === 'debt' && !this.customerId) return false;
+            return true;
+        },
+
+        addToCart(product) {
+            const existing = this.cart.find(i => i.id === product.id);
+            if (existing) {
+                if (existing.qty >= product.stock) { this.errorMsg = 'Stok ' + product.name + ' tidak cukup!'; setTimeout(() => this.errorMsg = '', 3000); return; }
+                existing.qty++;
+            } else {
+                if (product.stock <= 0) { this.errorMsg = 'Stok ' + product.name + ' habis!'; setTimeout(() => this.errorMsg = '', 3000); return; }
+                this.cart.push({ id: product.id, name: product.name, sell_price: product.sell_price, stock: product.stock, unit: product.unit, qty: 1 });
+            }
+            this.errorMsg = '';
+        },
+
+        changeQty(idx, delta) {
+            const item = this.cart[idx];
+            const newQty = item.qty + delta;
+            if (newQty <= 0) { this.cart.splice(idx, 1); return; }
+            if (newQty > item.stock) { this.errorMsg = 'Stok ' + item.name + ' tidak cukup!'; setTimeout(() => this.errorMsg = '', 3000); return; }
+            item.qty = newQty;
+        },
+
+        removeItem(idx) { this.cart.splice(idx, 1); },
+        clearCart() { this.cart = []; },
+
+        async checkout() {
+            if (!this.canCheckout) return;
+            this.submitting = true;
+            this.errorMsg = '';
+            this.successMsg = '';
+            this.receiptId = null;
+
+            try {
+                const payload = {
+                    cart: this.cart.map(i => ({ product_id: i.id, qty: i.qty })),
+                    payment_method: this.paymentMethod,
+                    customer_id: this.customerId || null,
+                    amount_given: this.paymentMethod === 'cash' ? this.amountGiven : 0,
+                };
+                const res = await fetch('{{ route("pos.checkout") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 'Accept': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const data = await res.json();
+                if (data.success) {
+                    this.successMsg = data.message;
+                    this.receiptId = data.transaction.id;
+                    this.cart = [];
+                    this.amountGiven = 0;
+                    this.customerId = '';
+                    // Reload products to get updated stock
+                    const prodRes = await fetch('{{ route("pos.index") }}', { headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' } });
+                    if (prodRes.ok) {
+                        const html = await prodRes.text();
+                        const match = html.match(/allProducts:\s*(\[.*?\])/s);
+                        if (match) this.allProducts = JSON.parse(match[1]);
+                    }
+                } else {
+                    this.errorMsg = data.message || 'Terjadi kesalahan.';
+                }
+            } catch (e) {
+                this.errorMsg = 'Gagal menghubungi server.';
+            }
+            this.submitting = false;
+        },
+
+        num(n) { return Number(n).toLocaleString('id-ID'); },
+    };
+}
+</script>
 @endsection
