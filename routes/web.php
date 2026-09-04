@@ -50,4 +50,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('pos/checkout', [PosController::class, 'checkout'])->name('pos.checkout');
     Route::get('pos/receipt/{id}', [PosController::class, 'receipt'])->name('pos.receipt');
     Route::get('kasbon', [KasbonController::class, 'index'])->name('kasbon.index');
+    Route::get('kasbon/{id}', [KasbonController::class, 'show'])->name('kasbon.show');
+    Route::post('kasbon/{id}/bayar', [KasbonController::class, 'bayarPiutang'])->name('kasbon.bayar');
 });
