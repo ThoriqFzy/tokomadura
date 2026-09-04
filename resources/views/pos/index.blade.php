@@ -113,14 +113,15 @@
                     </div>
                 </div>
 
-                {{-- Tombol tampilkan QRIS (hanya metode qris) --}}
+                {{-- Poster QRIS (langsung tampilkan saat pilih metode qris) --}}
                 <div x-show="paymentMethod === 'qris'" x-transition class="text-center">
-                    <div class="text-xs text-slate-500 mb-2">Arahkan QRIS pelanggan ke poster berikut:</div>
-                    <button type="button" @click="showQris = true"
-                        class="w-full grid place-items-center gap-2 py-4 rounded-lg border-2 border-emerald-500 bg-emerald-50 hover:bg-emerald-100 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-emerald-600"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5ZM13.5 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5Z"/></svg>
-                        <span class="font-semibold text-emerald-700 text-sm">Tampilkan QRIS Thor Store</span>
-                    </button>
+                    <div class="text-xs text-slate-500 mb-2">Minta pelanggan scan poster ini:</div>
+                    <img src="{{ asset('img/qris-thor.jpg') }}" alt="QRIS Thor Store"
+                        class="w-full max-w-[220px] mx-auto rounded-lg border border-slate-200 shadow-inner">
+                    <div class="mt-2 text-xs text-slate-500">
+                        <span class="font-semibold text-slate-700">Thor Store</span> · A01 · ID1026529839122
+                    </div>
+                    <div class="mt-0.5 text-[11px] text-slate-400">Konfirmasi nominal sebelum proses.</div>
                 </div>
 
                 {{-- Tombol metode --}}
@@ -187,27 +188,6 @@
     </div>
 </div>
 
-{{-- Modal QRIS --}}
-<div x-show="showQris" x-cloak
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
-    @keydown.escape.window="showQris = false">
-    <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full overflow-hidden" @click.outside="showQris = false">
-        <div class="px-4 py-3 bg-emerald-600 text-white flex items-center justify-between">
-            <span class="font-bold text-sm">📱 Scan QRIS</span>
-            <button type="button" @click="showQris = false" class="text-emerald-100 hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-        <div class="p-5">
-            <img src="{{ asset('img/qris-thor.jpg') }}" alt="QRIS Thor Store" class="w-full rounded-lg border border-slate-200 shadow-inner">
-            <div class="mt-3 text-center text-sm text-slate-600">
-                <span class="font-semibold text-slate-800">Thor Store</span> · NMID ID1026529839122 · A01
-            </div>
-            <div class="mt-1 text-center text-xs text-slate-400">Minta pelanggan scan & konfirmasi nominal sebelum bayar.</div>
-        </div>
-    </div>
-</div>
-
 <script>
 window.posApp = function() {
     return {
@@ -222,7 +202,6 @@ window.posApp = function() {
         errorMsg: '',
         successMsg: '',
         receiptId: null,
-        showQris: false,
 
         init() {},
 
